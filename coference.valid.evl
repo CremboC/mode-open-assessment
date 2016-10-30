@@ -1,0 +1,8 @@
+
+context Attendee {
+	// C2.3
+	constraint MustSpeakAtLeastOneLanguage {
+		check : Attendee.all.languages.notEmpty()
+		message : "An attendee must speak at least one language"
+	}
+}

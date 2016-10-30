@@ -1,0 +1,46 @@
+@namespace(prefix="conferences", uri="dinner")
+package dinner;
+
+class Universe {
+	val Institution[*] institutions;
+	val Language[1..*] languages;
+	
+	val Dinner dinner;
+}
+
+class Dinner {
+	val Table[*] tables;
+}
+
+class Table {
+	attr int uid;
+	attr int capacity;
+	
+	val Seat[1..*]#table seats;
+}
+
+class Seat {
+	ref Attendee[1]#seat attendee;
+	ref Table[1]#seats table;
+}
+
+class Attendee {
+	attr String name;
+	ref Institution affliation;
+	
+	ref Attendee[*] likes;
+	ref Attendee[*] dislikes;
+	
+	ref Language[1..*] languages;
+	attr String[*] allergies;
+	
+	ref Seat[1]#attendee seat;
+}
+
+class Institution {
+	attr String name;
+}
+
+class Language {
+	attr String name;
+}

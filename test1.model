@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ASCII"?>
+<conferences:Universe xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:conferences="dinner" xmi:id="_HdlAkJ6dEeatS_3dZDKyxA">
+  <institutions xmi:id="_IKNnoJ6eEeatS_3dZDKyxA" name="University of York"/>
+  <institutions xmi:id="_JMp8EJ6eEeatS_3dZDKyxA" name="University of Lancaster"/>
+  <languages xmi:id="_KonjwJ6eEeatS_3dZDKyxA" name="English"/>
+  <languages xmi:id="_LRuLIJ6eEeatS_3dZDKyxA" name="Spanish"/>
+  <dinner xmi:id="_HGgH4J6eEeatS_3dZDKyxA">
+    <tables xmi:id="_MG774J6eEeatS_3dZDKyxA" uid="1" capacity="5">
+      <attendees xmi:id="_ONIMUJ6eEeatS_3dZDKyxA" name="John Smith" affliation="_JMp8EJ6eEeatS_3dZDKyxA">
+        <allergies>Nuts</allergies>
+      </attendees>
+      <attendees xmi:id="_TpGs0J6eEeatS_3dZDKyxA" name="Alek Snowson" affliation="_IKNnoJ6eEeatS_3dZDKyxA" dislikes="_ONIMUJ6eEeatS_3dZDKyxA" languages="_KonjwJ6eEeatS_3dZDKyxA"/>
+    </tables>
+    <tables xmi:id="_NSuZkJ6eEeatS_3dZDKyxA" uid="2" capacity="10">
+      <attendees xmi:id="_m2S6cJ6eEeatS_3dZDKyxA" name="Alejandro Garcia" affliation="_IKNnoJ6eEeatS_3dZDKyxA" likes="_TpGs0J6eEeatS_3dZDKyxA" languages="_LRuLIJ6eEeatS_3dZDKyxA"/>
+    </tables>
+  </dinner>
+</conferences:Universe>
