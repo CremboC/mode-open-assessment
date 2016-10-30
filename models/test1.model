@@ -6,7 +6,7 @@
   <languages xmi:id="_LRuLIJ6eEeatS_3dZDKyxA" name="Spanish"/>
   <dinner xmi:id="_HGgH4J6eEeatS_3dZDKyxA">
     <tables xmi:id="_MG774J6eEeatS_3dZDKyxA" uid="1" capacity="5">
-      <attendees xmi:id="_ONIMUJ6eEeatS_3dZDKyxA" name="John Smith" affliation="_JMp8EJ6eEeatS_3dZDKyxA">
+      <attendees xmi:id="_ONIMUJ6eEeatS_3dZDKyxA" name="John Smith" affliation="_JMp8EJ6eEeatS_3dZDKyxA" likes="_ONIMUJ6eEeatS_3dZDKyxA">
         <allergies>Nuts</allergies>
       </attendees>
       <attendees xmi:id="_TpGs0J6eEeatS_3dZDKyxA" name="Alek Snowson" affliation="_IKNnoJ6eEeatS_3dZDKyxA" dislikes="_ONIMUJ6eEeatS_3dZDKyxA" languages="_KonjwJ6eEeatS_3dZDKyxA"/>

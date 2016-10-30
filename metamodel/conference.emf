@@ -16,7 +16,7 @@ class Table {
 	attr int uid;
 	attr int capacity;
 	
-	val Seat[1..*]#table seats;
+	val Attendee[1..*]#table attendees;
 }
 
 class Seat {
@@ -35,6 +35,8 @@ class Attendee {
 	attr String[*] allergies;
 	
 	ref Seat[1]#attendee seat;
+	
+	ref Table[1]#attendees table;
 }
 
 class Institution {

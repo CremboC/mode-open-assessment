@@ -4,8 +4,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Universe">
     <eStructuralFeatures xsi:type="ecore:EReference" name="institutions" upperBound="-1"
         eType="#//Institution" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="languages" upperBound="-1"
-        eType="#//Language" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="languages" lowerBound="1"
+        upperBound="-1" eType="#//Language" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dinner" eType="#//Dinner"
         containment="true"/>
   </eClassifiers>
@@ -19,6 +19,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="attendees" lowerBound="1"
         upperBound="-1" eType="#//Attendee" containment="true" eOpposite="#//Attendee/table"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Seat">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attendee" lowerBound="1"
+        eType="#//Attendee" eOpposite="#//Attendee/seat"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="table" lowerBound="1" eType="#//Table"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attendee">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="affliation" eType="#//Institution"/>
@@ -30,6 +35,8 @@
         upperBound="-1" eType="#//Language"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="allergies" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="seat" lowerBound="1" eType="#//Seat"
+        eOpposite="#//Seat/attendee"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="table" lowerBound="1" eType="#//Table"
         eOpposite="#//Table/attendees"/>
   </eClassifiers>
