@@ -4,15 +4,25 @@
   <institutions xmi:id="_JMp8EJ6eEeatS_3dZDKyxA" name="University of Lancaster"/>
   <languages xmi:id="_KonjwJ6eEeatS_3dZDKyxA" name="English"/>
   <languages xmi:id="_LRuLIJ6eEeatS_3dZDKyxA" name="Spanish"/>
+  <languages xmi:id="_HT330MamEeaWkYXIobji2g" name="German"/>
+  <languages xmi:id="_pANm4Ma3EeaWkYXIobji2g" name="Italian"/>
+  <languages xmi:id="_rq0L8Ma3EeaWkYXIobji2g" name="Latin"/>
+  <attendees xmi:id="_eMAioMalEeaWkYXIobji2g" name="John Smith" affliation="_JMp8EJ6eEeatS_3dZDKyxA" languages="_KonjwJ6eEeatS_3dZDKyxA _HT330MamEeaWkYXIobji2g" seat="_Y0b0cMa6EeaWkYXIobji2g"/>
+  <attendees xmi:id="_gp79oMalEeaWkYXIobji2g" name="Donatelo Alimante" affliation="_IKNnoJ6eEeatS_3dZDKyxA" languages="_LRuLIJ6eEeatS_3dZDKyxA" seat="_QiUZ0MalEeaWkYXIobji2g"/>
+  <attendees xmi:id="_SUJUEMa2EeaWkYXIobji2g" name="Michelangelo Alfredo" languages="_LRuLIJ6eEeatS_3dZDKyxA" seat="_Q64q0MalEeaWkYXIobji2g"/>
+  <attendees xmi:id="_mJkw8Ma3EeaWkYXIobji2g" name="Giuseppe Garibaldi" languages="_pANm4Ma3EeaWkYXIobji2g _rq0L8Ma3EeaWkYXIobji2g" seat="_lVr14Ma3EeaWkYXIobji2g"/>
+  <attendees xmi:id="_brL0kMa5EeaWkYXIobji2g" name="Amerigo Vespucci" languages="_rq0L8Ma3EeaWkYXIobji2g _pANm4Ma3EeaWkYXIobji2g" seat="_ZWB7EMa5EeaWkYXIobji2g"/>
+  <attendees xmi:id="_7Id60Ma5EeaWkYXIobji2g" name="James Cook" languages="_KonjwJ6eEeatS_3dZDKyxA" seat="_RI3ccMalEeaWkYXIobji2g"/>
   <dinner xmi:id="_HGgH4J6eEeatS_3dZDKyxA">
-    <tables xmi:id="_MG774J6eEeatS_3dZDKyxA" uid="1" capacity="5">
-      <attendees xmi:id="_ONIMUJ6eEeatS_3dZDKyxA" name="John Smith" affliation="_JMp8EJ6eEeatS_3dZDKyxA" likes="_ONIMUJ6eEeatS_3dZDKyxA">
-        <allergies>Nuts</allergies>
-      </attendees>
-      <attendees xmi:id="_TpGs0J6eEeatS_3dZDKyxA" name="Alek Snowson" affliation="_IKNnoJ6eEeatS_3dZDKyxA" dislikes="_ONIMUJ6eEeatS_3dZDKyxA" languages="_KonjwJ6eEeatS_3dZDKyxA"/>
+    <tables xmi:id="_MG774J6eEeatS_3dZDKyxA" identifier="Table1" capacity="3">
+      <seats xmi:id="_QiUZ0MalEeaWkYXIobji2g" attendee="_gp79oMalEeaWkYXIobji2g"/>
+      <seats xmi:id="_Q64q0MalEeaWkYXIobji2g" attendee="_SUJUEMa2EeaWkYXIobji2g"/>
+      <seats xmi:id="_RI3ccMalEeaWkYXIobji2g" attendee="_7Id60Ma5EeaWkYXIobji2g"/>
+      <seats xmi:id="_Y0b0cMa6EeaWkYXIobji2g" attendee="_eMAioMalEeaWkYXIobji2g"/>
     </tables>
-    <tables xmi:id="_NSuZkJ6eEeatS_3dZDKyxA" uid="2" capacity="10">
-      <attendees xmi:id="_m2S6cJ6eEeatS_3dZDKyxA" name="Alejandro Garcia" affliation="_IKNnoJ6eEeatS_3dZDKyxA" likes="_TpGs0J6eEeatS_3dZDKyxA" languages="_LRuLIJ6eEeatS_3dZDKyxA"/>
+    <tables xmi:id="_NSuZkJ6eEeatS_3dZDKyxA" identifier="Table2" capacity="10">
+      <seats xmi:id="_lVr14Ma3EeaWkYXIobji2g" attendee="_mJkw8Ma3EeaWkYXIobji2g"/>
+      <seats xmi:id="_ZWB7EMa5EeaWkYXIobji2g" attendee="_brL0kMa5EeaWkYXIobji2g"/>
     </tables>
   </dinner>
 </conferences:Universe>

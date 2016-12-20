@@ -1,0 +1,17 @@
+context Table {
+	// C3.1 
+	constraint DoesNotExceedCapacity {
+		check : self.seats.size() <= self.capacity
+		message : "Table '" + self.identifier + "' exceeds capacity: " + self.seats.size() + " out of " + self.capacity
+	}
+	
+	// May, or may not be required. Since capacity = seats, but a seat may not be there if a table is not at full capacity
+	// constraint HasRequiredAmountOfSeats {}
+	
+	// C3.3
+	constraint HasUniqueIdentifier {
+		check : Table.allInstances.select(t | t <> self).identifier.excludes(self.identifier)
+		message : "Table name '" + self.identifier + "' is not unique."
+	}
+	
+}

@@ -1,9 +1,11 @@
 @namespace(prefix="conferences", uri="dinner")
+@gmf
 package dinner;
 
 class Universe {
 	val Institution[*] institutions;
 	val Language[1..*] languages;
+	val Attendee[*] attendees;
 	
 	val Dinner dinner;
 }
@@ -13,15 +15,16 @@ class Dinner {
 }
 
 class Table {
-	attr int uid;
+	attr String identifier;
 	attr int capacity;
 	
-	val Attendee[1..*]#table attendees;
+	val Seat[1..*]#table seats;
 }
 
+@gmf.node(label = "attendee.name")
 class Seat {
-	ref Attendee[1]#seat attendee;
-	ref Table[1]#seats table;
+	ref Table#seats table;
+	ref Attendee#seat attendee;
 }
 
 class Attendee {
@@ -34,9 +37,7 @@ class Attendee {
 	ref Language[1..*] languages;
 	attr String[*] allergies;
 	
-	ref Seat[1]#attendee seat;
-	
-	ref Table[1]#attendees table;
+	ref Seat#attendee seat;
 }
 
 class Institution {

@@ -1,26 +1,54 @@
+import "../utils/attendee.eol";
 
 context Attendee {
+
+	// C2.1
+	constraint MustBeAllocated {
+		check : self.seat <> null
+		message : "Attendee (" + self.name + ") is not allocated to a table"
+		// potential fix - automatically find available seat?
+	}
+	
+	// C2.2
+	constraint SatToCommonLanguage {
+		guard : self.satisfies("MustBeAllocated") and self.satisfies("ShouldNotBeAlone")
+		check {
+			// Get all the languages of the neighbors into a single list, 
+			// and check if at least one of the is spoken by the current attendee.
+			// Note the list of languages is not unique, but it does not matter.
+			return self.neighbors().languages.flatten().exists(l|self.languages.contains(l));
+		}
+		message : "Attendee (" + self.nameAndLocation() + ") should be sat next to a person with at least one common language. "
+	}
+
 	// C2.3
 	constraint MustSpeakAtLeastOneLanguage {
 		check : self.languages.notEmpty()
-		message : "An attendee (" + self.name + ") must speak at least one language"
+		message : "Attendee (" + self.name + ") must speak at least one language"
 	}
 	
 	// C2.4
 	constraint CannotLikeSelf {
 		check : self.likes.excludes(self)
-		message : "An attendee (" + self.name + ") cannot prefer himself"
+		message : "Attendee (" + self.name + ") cannot prefer himself"
 	}
 	
 	// C2.5
 	constraint CannotDislikeSelf {
 		check : self.dislikes.excludes(self)
-		message : "An attendee (" + self.name + ") cannot dislike himself"
+		message : "Attendee (" + self.name + ") cannot dislike himself"
 	}
 	
 	// C2.6
 	constraint MustHaveAName {
 		check : self.name <> null or self.name <> ""
-		message :  "An attendee must have a name"
+		message : "An attendee must have a name"
+	}
+	
+	// C2.7
+	constraint ShouldNotBeAlone {
+		guard : self.satisfies("MustBeAllocated")
+		check : self.neighbors().size() > 0
+		message : "Attendee (" + self.nameAndLocation() + ") should not be sat alone."
 	}
 }

@@ -1,0 +1,33 @@
+operation Attendee neighbors(): Set {
+	if (self.seat == null) {
+		return Set{};
+	}
+	var seats = self.seat.table.seats;
+	var length = seats.size();
+	var index = seats.indexOf(self.seat);
+	
+	var nextIndex = index + 1;
+	if (nextIndex == length) { 
+		nextIndex = 0;
+	}
+	
+	var previousIndex = index - 1;
+	if (previousIndex == -1) {
+		previousIndex = length - 1;
+	}
+	
+	var nextPerson = seats.at(nextIndex).attendee;
+	var previousPerson = seats.at(previousIndex).attendee;
+	
+	var neighbors : Set;
+	if (nextPerson <> null) neighbors.add(nextPerson);
+	if (previousPerson <> null) neighbors.add(previousPerson);
+	
+	return neighbors;
+}
+
+operation Attendee nameAndLocation(): String {
+	var location = self.seat.table.identifier;
+	var name = self.name;
+	return self.name + " at " + location;
+}
