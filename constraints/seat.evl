@@ -1,0 +1,15 @@
+context Seat {
+	critique EmptySeat {
+		check : self.attendee <> null
+		message : "Seat (" + self.table.identifier + ") is unoccupied."
+		
+		fix {
+			title : "Remove seat and match update table capacity"
+			do {
+				var table = self.table;
+				table.seats = table.seats.excluding(self);
+				table.capacity = table.capacity - 1;
+			}
+		}
+	}
+}

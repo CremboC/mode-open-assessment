@@ -1,0 +1,17 @@
+operation Table requestUniqueName() {
+	var otherIdentifiers = Table.all.excluding(self).identifier;
+	var isValid = false;
+	var name : String;
+	while (not isValid) {
+		name = UserInput.prompt("Enter a name for the table. Note it must be unique.");
+		isValid = otherIdentifiers.excludes(name);
+		if (not isValid) {	
+			UserInput.inform("Table identifier must be unique. Used identifiers are: " + otherIdentifiers.concat(", "));
+		}
+	}
+	self.identifier = name;
+} 
+
+operation Table attendees() : OrderedSet<Attendee> {
+	return self.seats.attendee.asOrderedSet();
+}

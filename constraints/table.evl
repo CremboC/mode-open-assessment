@@ -1,17 +1,98 @@
+import "../utils/seat.eol";
+import "../utils/table.eol";
+
 context Table {
 	// C3.1 
 	constraint DoesNotExceedCapacity {
 		check : self.seats.size() <= self.capacity
-		message : "Table '" + self.identifier + "' exceeds capacity: " + self.seats.size() + " out of " + self.capacity
+		message : "Table (" + self.identifier + ") exceeds capacity: " + self.seats.size() + " out of " + self.capacity
+		
+		fix {
+			title : "Update capacity to match number of seats"
+			do {
+				self.capacity = self.seats.size();
+			}
+		}
 	}
-	
-	// May, or may not be required. Since capacity = seats, but a seat may not be there if a table is not at full capacity
-	// constraint HasRequiredAmountOfSeats {}
 	
 	// C3.3
 	constraint HasUniqueIdentifier {
-		check : Table.allInstances.select(t | t <> self).identifier.excludes(self.identifier)
-		message : "Table name '" + self.identifier + "' is not unique."
+		check : Table.all.excluding(self).identifier.excludes(self.identifier)
+		message : "Table (" + self.identifier + ") is not unique."
+		
+		fix {
+			title : "Update table name"
+			do {
+				self.requestUniqueName();
+			}
+		}
 	}
 	
+	// May, or may not be required. Since capacity = seats, but a seat may not be there if a table is not at full capacity
+	critique CapacityMismatched {
+		guard : self.satisfies("DoesNotExceedCapacity")
+		check : self.seats.size() == self.capacity
+		message : "Table (" + self.identifier + ") has capacity of " + self.capacity + " but only " + self.seats.size() + " seats."
+		
+		fix {
+			title : "Reduce capacity to match number of seats"
+			do {
+				self.capacity = self.seats.size();
+			}
+		}
+		
+		fix {
+			title : "Add seats to match capacity"
+			do {
+				var toMatch = self.capacity - self.seats.size();
+				var i = 0;
+				transaction {
+					while (i < toMatch) {
+						self.seats.add(new Seat);
+						i++;
+					}
+				}
+			}
+		}
+	}
+	
+	critique NoName {
+		check : self.identifier <> null and self.identifier <> ""
+		message : "Table (" + self.identifier + ") has no identifier. It is recommended to add one."
+		fix {
+			title : "Set an identifier"
+			do {
+				self.requestUniqueName();
+			}
+		}
+	}
+	
+	critique NoSeats {
+		guard : self.satisfies("NoName")
+		check : self.seats.size() > 0
+		message : "Table (" + self.identifier + ") has no seats."
+		
+		fix {
+			title : "Delete table"
+			do {
+				var dinner = Universe.allInstances.first().dinner;
+				dinner.tables = dinner.tables.excluding(self);
+			}		
+		}
+		
+		fix {
+			title : "Add seats"
+			do {
+				var seats = UserInput.promptInteger("How many seats would you like to create?");
+				self.capacity = seats;
+				var i = 0;
+				transaction {
+					while (i < seats) {
+						self.seats.add(new Seat);
+						i++;
+					}
+				}
+			}			
+		}
+	}
 }

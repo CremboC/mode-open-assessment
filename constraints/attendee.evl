@@ -1,12 +1,47 @@
 import "../utils/attendee.eol";
+import "../utils/table.eol";
 
 context Attendee {
 
 	// C2.1
 	constraint MustBeAllocated {
+		guard : self.satisfies("HasName")
 		check : self.seat <> null
 		message : "Attendee (" + self.name + ") is not allocated to a table"
 		// potential fix - automatically find available seat?
+		
+		fix {
+			title : "Allocate to an automatically selected seat"
+			do {
+				if (self.allocateSeat()) {
+					UserInput.inform("Allocated " + self.nameAndLocation());
+				} else {
+					UserInput.inform("Failed to find a seat that satisfies the constraints.");
+				}
+				
+				// get all seats which are not allocated and sorts them so that the seats with most number of attendees
+				// nearby are first
+				//var available = Seat.all.select(s|s.attendee == null).sortBy(s|s.table.attendees().size());
+				//available.table.println();
+				//var originalSeat = self.seat; // store self's copy so that if the search fails, we restore the initial state.
+				//var foundSeat = false;
+				
+				//for (seat in available) {
+				//	self.seat = seat;
+				//	if (self.satisfies("SatToCommonLanguage")) {
+				//		foundSeat = true;
+				//		break;
+				//	}
+				//}
+				
+				//if (not foundSeat) {
+				//	self.seat = originalSeat;
+				//	UserInput.inform("Failed to find a seat that satisfies the constraints.");
+				//} else {
+				//	UserInput.inform("Allocated " + self.nameAndLocation());
+				//}			
+			}
+		}
 	}
 	
 	// C2.2
@@ -25,24 +60,54 @@ context Attendee {
 	constraint MustSpeakAtLeastOneLanguage {
 		check : self.languages.notEmpty()
 		message : "Attendee (" + self.name + ") must speak at least one language"
+		
+		fix {
+			title : "Add a language to add"
+			do {
+				var languages = UserInput.chooseMany("Select some langauges", Language.all);
+				self.languages = languages;
+			}
+		}
 	}
 	
 	// C2.4
 	constraint CannotLikeSelf {
 		check : self.likes.excludes(self)
 		message : "Attendee (" + self.name + ") cannot prefer himself"
+		
+		fix {
+			title : "Remove self from liked persons list"
+			do {
+				self.likes = self.likes.excluding(self);
+			}
+		}
 	}
 	
 	// C2.5
 	constraint CannotDislikeSelf {
 		check : self.dislikes.excludes(self)
 		message : "Attendee (" + self.name + ") cannot dislike himself"
+		
+		fix {
+			title : "Remove self from disliked persons list"
+			do {
+				self.dislikes = self.dislikes.excluding(self);
+			}
+		}		
 	}
 	
 	// C2.6
-	constraint MustHaveAName {
+	constraint HasName {
 		check : self.name <> null or self.name <> ""
 		message : "An attendee must have a name"
+		
+		fix {
+			title : "Set name"
+			do {
+				var name = UserInput.prompt("Please enter this attendee's name");
+				self.name = name;
+			}
+		}
 	}
 	
 	// C2.7
@@ -50,5 +115,16 @@ context Attendee {
 		guard : self.satisfies("MustBeAllocated")
 		check : self.neighbors().size() > 0
 		message : "Attendee (" + self.nameAndLocation() + ") should not be sat alone."
+		
+		fix {
+			title : "Allocate new seat"
+			do {
+				if (self.allocateSeat()) {
+					UserInput.inform("Allocated " + self.nameAndLocation());
+				} else {
+					UserInput.inform("Failed to find a seat that satisfies the constraints.");
+				}
+			}
+		}
 	}
 }
