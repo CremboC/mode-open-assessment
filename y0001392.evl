@@ -1,0 +1,294 @@
+import "utils/attendee.eol";
+import "utils/table.eol";
+
+context Language {
+	critique IsUsed {
+		check {
+			var used = Attendee.all.languages.flatten().asSet();
+			return used.contains(self);
+		}
+		message : "Language " + self.name + " is not spoken by any attendee."
+		
+		fix {
+			title : "Delete language"
+			do {
+				var universe = Universe.all.first();
+				var name = self.name;
+				universe.languages = universe.languages.excluding(self);
+				if (universe.languages.excludes(self)) {
+					UserInput.inform("Language " + name + " deleted");
+				}
+			}
+		}
+	}
+}
+
+context Institution {
+	critique IsRepresented {
+		check {
+			var represented = Attendee.all.affliation.asSet();
+			return represented.contains(self); 
+		}
+		message : "Institution " + self.name + " is not represented by any attendee."
+		
+		fix {
+			title : "Delete institution"
+			do {
+				var universe = Universe.all.first();
+				var name = self.name;
+				universe.institutions = universe.institutions.excluding(self);
+				if (universe.institutions.excludes(self)) {
+					UserInput.inform("Institution " + name + " deleted");
+				}
+			}
+		}
+	}
+}
+
+context Attendee {
+
+	// C2.1
+	constraint IsAllocated {
+		guard : self.satisfies("HasName")
+		check : self.seat <> null
+		message : "Attendee (" + self.name + ") is not allocated to a table."
+		
+		fix {
+			title : "Allocate to an automatically selected seat"
+			do {
+				if (self.allocateSeat()) {
+					UserInput.inform("Allocated " + self.nameAndLocation());
+				} else {
+					UserInput.inform("Failed to find a seat that satisfies the constraints.");
+				}	
+			}
+		}
+	}
+	
+	// C2.2
+	constraint SatNextToCommonLanguage {
+		guard : self.satisfies("IsAllocated") and self.satisfies("IsNotAlone")
+		check {
+			return self.neighborsSpeakCommonLanguage();
+		}
+		message : "Attendee (" + self.nameAndLocation() + ") should be sat next to a person with at least one common language."
+	}
+
+	// C2.3
+	constraint SpeaksAtLeastOneLanguage {
+		check : self.languages.notEmpty()
+		message : "Attendee (" + self.name + ") must speak at least one language."
+		
+		fix {
+			title : "Add a language to add"
+			do {
+				var languages = UserInput.chooseMany("Select some langauges", Language.all);
+				self.languages = languages;
+			}
+		}
+	}
+	
+	// C2.4
+	constraint DoesntLikeSelf {
+		check : self.likes.excludes(self)
+		message : "Attendee (" + self.name + ") cannot prefer himself."
+		
+		fix {
+			title : "Remove self from liked persons list"
+			do {
+				self.likes = self.likes.excluding(self);
+			}
+		}
+	}
+	
+	// C2.5
+	constraint DoesntDislikeSelf {
+		check : self.dislikes.excludes(self)
+		message : "Attendee (" + self.name + ") cannot dislike himself."
+		
+		fix {
+			title : "Remove self from disliked persons list"
+			do {
+				self.dislikes = self.dislikes.excluding(self);
+			}
+		}		
+	}
+	
+	// C2.6
+	constraint HasName {
+		check : self.name <> null and self.name <> ""
+		message : "An attendee must have a name."
+		
+		fix {
+			title : "Set name"
+			do {
+				var name = UserInput.prompt("Please enter this attendee's name");
+				self.name = name;
+			}
+		}
+	}
+	
+	// C2.7
+	constraint IsNotAlone {
+		guard : self.satisfies("IsAllocated")
+		check : self.neighbors().size() > 0
+		message : "Attendee (" + self.nameAndLocation() + ") should not be sat alone."
+		
+		fix {
+			title : "Allocate new seat"
+			do {
+				if (self.allocateSeat()) {
+					UserInput.inform("Allocated " + self.nameAndLocation());
+				} else {
+					UserInput.inform("Failed to find a seat that satisfies the constraints.");
+				}
+			}
+		}
+	}
+	
+	// Q2.1
+	critique SatNextToDisliked {
+		guard : self.satisfies("IsNotAlone")
+		check : not self.neighbors().exists(a|self.dislikes.contains(a))
+		message {
+			var person = self.neighbors().select(a|self.dislikes.contains(a)).first();
+			return "Attendee (" + self.nameAndLocation() + ") is sat next to a person he dislikes (" + person.name + ")";
+		}
+	}
+}
+
+context Table {
+	// C3.1 
+	constraint DoesNotExceedCapacity {
+		check : self.seats.size() <= self.capacity
+		message : "Table (" + self.identifier + ") exceeds capacity: " + self.seats.size() + " out of " + self.capacity
+		
+		fix {
+			title : "Update capacity to match number of seats"
+			do {
+				self.capacity = self.seats.size();
+			}
+		}
+	}
+	
+	// C3.2
+	constraint IsOccupied {
+		check : not self.seats.attendee.isEmpty()
+		message : "Table (" + self.identifier + ") is unoccupied."
+		
+		fix {
+			title : "Delete table"
+			do {
+				var dinner = Universe.all.first().dinner;
+				var oldIdentifier = self.id;
+				dinner.tables = dinner.tables.excluding(self);
+				
+				if (dinner.tables.excludes(self)) {
+					UserInput.inform("Table (" + oldIdentifier + ") has been deleted.");
+				}
+			}
+		}
+	}
+	
+	// C3.3
+	constraint HasUniqueIdentifier {
+		check : Table.all.excluding(self).identifier.excludes(self.identifier)
+		message : "Table (" + self.identifier + ") is not unique."
+		
+		fix {
+			title : "Update table name"
+			do {
+				self.requestUniqueIdentifier();
+			}
+		}
+	}
+	
+	// May, or may not be required. Since capacity = seats, but a seat may not be there if a table is not at full capacity
+	// Q3.1
+	critique CapacityMismatched {
+		guard : self.satisfies("DoesNotExceedCapacity")
+		check : self.seats.size() == self.capacity
+		message : "Table (" + self.identifier + ") has capacity of " + self.capacity + " but only " + self.seats.size() + " seats."
+		
+		fix {
+			title : "Reduce capacity to match number of seats"
+			do {
+				self.capacity = self.seats.size();
+			}
+		}
+		
+		fix {
+			title : "Add seats to match capacity"
+			do {
+				var toMatch = self.capacity - self.seats.size();
+				var i = 0;
+				transaction {
+					while (i < toMatch) {
+						self.seats.add(new Seat);
+						i++;
+					}
+				}
+			}
+		}
+	}
+	
+	// Q3.2
+	critique NoName {
+		check : self.identifier <> null and self.identifier <> ""
+		message : "Table (" + self.identifier + ") has no identifier. It is recommended to add one."
+		fix {
+			title : "Set an identifier"
+			do {
+				self.requestUniqueIdentifier();
+			}
+		}
+	}
+	
+	// Q3.3
+	critique NoSeats {
+		guard : self.satisfies("NoName")
+		check : self.seats.size() > 0
+		message : "Table (" + self.identifier + ") has no seats."
+		
+		fix {
+			title : "Delete table"
+			do {
+				var dinner = Universe.all.first().dinner;
+				dinner.tables = dinner.tables.excluding(self);
+			}		
+		}
+		
+		fix {
+			title : "Add seats"
+			do {
+				var seats = UserInput.promptInteger("How many seats would you like to create?");
+				self.capacity = seats;
+				var i = 0;
+				transaction {
+					while (i < seats) {
+						self.seats.add(new Seat);
+						i++;
+					}
+				}
+			}			
+		}
+	}
+}
+
+context Seat {
+	// Q4.1
+	critique EmptySeat {
+		guard : self.table.satisfies("DoesNotExceedCapacity") 
+		check : self.attendee <> null
+		message : "Seat (at " + self.table.identifier + ") is unoccupied."
+		
+		fix {
+			title : "Remove seat and match update table capacity"
+			do {
+				var table = self.table;
+				table.seats = table.seats.excluding(self);
+				table.capacity = table.capacity - 1;
+			}
+		}
+	}
+}

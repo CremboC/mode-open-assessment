@@ -1,3 +1,5 @@
+import "table.eol";
+
 operation Attendee neighbors(): Set {
 	if (self.seat == null) {
 		return Set{};
@@ -23,7 +25,7 @@ operation Attendee neighbors(): Set {
 	if (nextPerson <> null) neighbors.add(nextPerson);
 	if (previousPerson <> null) neighbors.add(previousPerson);
 	
-	return neighbors;
+	return neighbors.excluding(self);
 }
 
 operation Attendee nameAndLocation(): String {
@@ -36,17 +38,22 @@ operation Attendee allocateSeat(): Boolean {
 	// get all seats which are not allocated and sorts them so that the seats with most number of attendees
 	// nearby are first
 	var available = Seat.all.select(s|s.attendee == null).sortBy(s|s.table.attendees().size());
-	available.table.println();
 	var originalSeat = self.seat; // store self's copy so that if the search fails, we restore the initial state.
-	var foundSeat = false;
 	
 	for (seat in available) {
 		self.seat = seat;
-		if (self.satisfies("SatToCommonLanguage")) {
+		if (self.neighborsSpeakCommonLanguage()) {
 			return true;
 		}
 	}
 	
 	self.seat = originalSeat;
 	return false;
+}
+
+operation Attendee neighborsSpeakCommonLanguage() : Boolean {
+	// Get all the languages of the neighbors into a single list, 
+	// and check if at least one of the is spoken by the current attendee.
+	// Note the list of languages is not unique, but it does not matter.
+	return self.neighbors().languages.flatten().exists(l|self.languages.contains(l));
 }

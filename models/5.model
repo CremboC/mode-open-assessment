@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ASCII"?>
+<conferences:Universe xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:conferences="dinner" xmi:id="_HdlAkJ6dEeatS_3dZDKyxA">
+  <institutions xmi:id="_ysF1QMeGEea9BYCvpYBzbQ" name="University of Milan"/>
+  <languages xmi:id="_IoU4gceGEea9BYCvpYBzbQ" name="Spanish"/>
+  <languages xmi:id="_IoU4gseGEea9BYCvpYBzbQ" name="Italian"/>
+  <languages xmi:id="_IoU4g8eGEea9BYCvpYBzbQ" name="Latin"/>
+  <attendees xmi:id="_gp79oMalEeaWkYXIobji2g" name="Donatelo Alimante" affliation="_ysF1QMeGEea9BYCvpYBzbQ" seat="_6c6tQceGEea9BYCvpYBzbQ"/>
+  <attendees xmi:id="_SUJUEMa2EeaWkYXIobji2g" name="Michelangelo Alfredo" languages="_IoU4gceGEea9BYCvpYBzbQ" seat="_6c7UUMeGEea9BYCvpYBzbQ"/>
+  <attendees xmi:id="_mJkw8Ma3EeaWkYXIobji2g" name="Giuseppe Garibaldi" likes="_brL0kMa5EeaWkYXIobji2g _qyOwkMbXEeaWkYXIobji2g" languages="_IoU4gseGEea9BYCvpYBzbQ _IoU4g8eGEea9BYCvpYBzbQ" seat="_6c77YceGEea9BYCvpYBzbQ"/>
+  <attendees xmi:id="_brL0kMa5EeaWkYXIobji2g" name="Amerigo Vespucci" languages="_IoU4g8eGEea9BYCvpYBzbQ _IoU4gseGEea9BYCvpYBzbQ" seat="_6c8icMeGEea9BYCvpYBzbQ"/>
+  <attendees xmi:id="_qyOwkMbXEeaWkYXIobji2g" name="Marco Polo" languages="_IoU4g8eGEea9BYCvpYBzbQ _IoU4gseGEea9BYCvpYBzbQ" seat="_6c9JgMeGEea9BYCvpYBzbQ"/>
+  <dinner xmi:id="_HGgH4J6eEeatS_3dZDKyxA">
+    <tables xmi:id="_6c6tQMeGEea9BYCvpYBzbQ" identifier="Table3" capacity="6">
+      <seats xmi:id="_6c6tQceGEea9BYCvpYBzbQ" attendee="_gp79oMalEeaWkYXIobji2g"/>
+      <seats xmi:id="_6c7UUMeGEea9BYCvpYBzbQ" attendee="_SUJUEMa2EeaWkYXIobji2g"/>
+      <seats xmi:id="_6c7UUceGEea9BYCvpYBzbQ"/>
+      <seats xmi:id="_6c7UUseGEea9BYCvpYBzbQ"/>
+    </tables>
+    <tables xmi:id="_6c77YMeGEea9BYCvpYBzbQ" identifier="Table2" capacity="3">
+      <seats xmi:id="_6c77YceGEea9BYCvpYBzbQ" attendee="_mJkw8Ma3EeaWkYXIobji2g"/>
+      <seats xmi:id="_6c8icMeGEea9BYCvpYBzbQ" attendee="_brL0kMa5EeaWkYXIobji2g"/>
+      <seats xmi:id="_6c9JgMeGEea9BYCvpYBzbQ" attendee="_qyOwkMbXEeaWkYXIobji2g"/>
+    </tables>
+    <tables xmi:id="_7BYFMMeGEea9BYCvpYBzbQ" identifier="Tableau"/>
+  </dinner>
+</conferences:Universe>

@@ -1,0 +1,162 @@
+import "../utils/attendee.eol";
+
+@test
+operation testNoNeighbors() {
+	var table = new Table;
+	
+	var a1 = new Attendee;
+	a1.name = "A1";
+	
+	var s1 = new Seat;
+	s1.attendee = a1;
+	
+	table.seats = OrderedSet{s1};
+
+	var neighbors = a1.neighbors();
+	assertTrue("Attendee should have no neighbors, has " + neighbors.size(), neighbors.isEmpty());
+}
+
+@test
+operation testOneNeighbors() {
+	var table = new Table;
+	
+	var a1 = new Attendee;
+	a1.name = "A1";
+	var a2 = new Attendee;
+	a2.name = "A2";
+	
+	var s1 = new Seat;
+	var s2 = new Seat;
+	s1.attendee = a1;
+	s2.attendee = a2;
+	
+	table.seats = OrderedSet{s1, s2};
+	
+	var neighbors = a2.neighbors();
+	assertTrue("Attendee should have 1 neighbor, has " + neighbors.size(), neighbors.size() == 1);
+	assertTrue("Attendee neighbor is incorrect", neighbors.containsAll(Sequence{a1}));
+}
+
+@test
+operation testTwoNeighbors() {
+	var table = new Table;
+	
+	var a1 = new Attendee;
+	a1.name = "A1";
+	var a2 = new Attendee;
+	a2.name = "A2";
+	var a3 = new Attendee;
+	a3.name = "A3";
+	var a4 = new Attendee;
+	a3.name = "A4";	
+	
+	var s1 = new Seat;
+	var s2 = new Seat;
+	var s3 = new Seat;
+	var s4 = new Seat;
+	s1.attendee = a1;
+	s2.attendee = a2;
+	s3.attendee = a3;
+	s4.attendee = a4;
+	
+	table.seats = OrderedSet{s1, s2, s3, s4};
+	
+	var neighbors = a2.neighbors();
+	assertTrue("Attendee should have 1 neighbor, has " + neighbors.size(), neighbors.size() == 2);
+	assertTrue("Attendee has incorrect neighbors", neighbors.containsAll(Sequence{a1, a3}));
+}
+
+@test
+operation testNameAndLocation() {
+	var table = new Table;
+	table.identifier = "Table1";
+	var s = new Seat;
+	var a = new Attendee;
+	a.name = "A1";
+	
+	s.attendee = a;
+	table.seats = OrderedSet{s};
+	
+	assertTrue(a.nameAndLocation() == "A1 at Table1");
+}
+
+@test
+operation testFailedAllocateSeat() {
+	var table = new Table;
+	table.identifier = "Table1";
+	
+	var a = new Attendee;
+	a.name = "A1";
+
+	var s = new Seat;
+	table.seats = OrderedSet{s};	
+	
+	assertFalse(a.allocateSeat());
+}
+
+@test
+operation testFailedAllocateSeatComplex() {
+	var uni = new Universe;
+	uni.dinner = new Dinner;
+	
+	var l1 = new Language;
+	l1.name = "L1";
+	var l2 = new Language;
+	l2.name = "L2";
+	
+	uni.languages.add(l1);
+	uni.languages.add(l2);
+	
+	var table = new Table;
+	table.identifier = "Table1";
+	
+	uni.dinner.tables.add(table);
+	
+	var a1 = new Attendee;
+	a1.name = "A1";
+	a1.languages.add(l1);
+	
+	var a2 = new Attendee;
+	a2.name = "A2";
+	a2.languages.add(l2);
+
+	var s1 = new Seat;
+	var s2 = new Seat;
+	s1.attendee = a2;
+	table.seats = OrderedSet{s1, s2};	
+	
+	assertFalse(a1.allocateSeat());
+}
+
+@test
+operation testSuccessfulAllocateSeat() {
+	var uni = new Universe;
+	uni.dinner = new Dinner;
+	
+	var l1 = new Language;
+	l1.name = "L1";
+	
+	uni.languages.add(l1);
+	
+	var table = new Table;
+	table.identifier = "Table1";
+	
+	uni.dinner.tables.add(table);
+
+	
+	var a1 = new Attendee;
+	a1.name = "A1";
+	a1.languages.add(l1);
+	
+	var a2 = new Attendee;
+	a2.name = "A2";
+	a2.languages.add(l1);
+	
+	var s1 = new Seat;
+	var s2 = new Seat;
+	s1.attendee = a2;
+	table.seats = OrderedSet{s1, s2};	
+	
+	assertTrue(a1.allocateSeat());
+	assertTrue(a1.seat == s2);
+}

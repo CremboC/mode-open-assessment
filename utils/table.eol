@@ -1,15 +1,15 @@
-operation Table requestUniqueName() {
+operation Table requestUniqueIdentifier() {
 	var otherIdentifiers = Table.all.excluding(self).identifier;
 	var isValid = false;
 	var name : String;
 	while (not isValid) {
-		name = UserInput.prompt("Enter a name for the table. Note it must be unique.");
-		isValid = otherIdentifiers.excludes(name);
+		identifier = UserInput.prompt("Enter a name for the table. Note it must be unique.");
+		isValid = otherIdentifiers.excludes(identifier);
 		if (not isValid) {	
 			UserInput.inform("Table identifier must be unique. Used identifiers are: " + otherIdentifiers.concat(", "));
 		}
 	}
-	self.identifier = name;
+	self.identifier = identifier;
 } 
 
 operation Table attendees() : OrderedSet<Attendee> {
