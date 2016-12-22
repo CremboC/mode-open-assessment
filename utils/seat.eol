@@ -1,3 +1,0 @@
-operation Seat number() {
-	return self.table.seats.indexOf(self) + 1;
-}

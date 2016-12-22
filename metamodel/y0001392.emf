@@ -6,7 +6,6 @@ package dinner;
 class Universe {
 	val Institution[*] institutions;
 	val Language[1..*] languages;
-	val Attendee[*] attendees;
 	
 	val Dinner dinner;
 }
@@ -27,14 +26,7 @@ class Table {
 	ref Dinner#tables dinner;
 	
 	@gmf.affixed
-	val Seat[1..*]#table seats;
-}
-
-@gmf.node(label.placement = "none")
-class Seat {
-	ref Table#seats table;
-	@gmf.link
-	ref Attendee#seat attendee;
+	val Attendee[1..*]# table attendees;
 }
 
 @gmf.node(label = "name")
@@ -48,7 +40,7 @@ class Attendee {
 	ref Language[1..*] languages;
 	attr String[*] allergies;
 	
-	ref Seat#attendee seat;
+	ref Table#attendees table;
 }
 
 @gmf.node(label = "name")

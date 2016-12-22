@@ -1,13 +1,13 @@
 import "table.eol";
 
 // returns immediate neighbors (left and right)
-operation Attendee neighbors() : Set {
-	if (self.seat == null) {
+operation Attendee neighbors() : Set<Attendee> {
+	if (self.table == null) {
 		return Set{};
 	}
-	var seats = self.seat.table.seats;
-	var length = seats.size();
-	var index = seats.indexOf(self.seat);
+	var attendees = self.table.attendees;
+	var length = attendees.size();
+	var index = attendees.indexOf(self);
 	
 	var nextIndex = index + 1;
 	if (nextIndex == length) { 
@@ -19,8 +19,8 @@ operation Attendee neighbors() : Set {
 		previousIndex = length - 1;
 	}
 	
-	var nextPerson = seats.at(nextIndex).attendee;
-	var previousPerson = seats.at(previousIndex).attendee;
+	var nextPerson = attendees.at(nextIndex);
+	var previousPerson = attendees.at(previousIndex);
 	
 	var neighbors : Set;
 	if (nextPerson <> null) neighbors.add(nextPerson);
@@ -30,30 +30,28 @@ operation Attendee neighbors() : Set {
 }
 
 // returns all people in the same table
-operation Attendee allNeighbors() : Set {
-	return self.seat.table.attendees().excluding(self);
+operation Attendee allNeighbors() : Set<Attendee> {
+	return self.table.attendees.excluding(self);
 }
 
 operation Attendee nameAndLocation() : String {
-	var location = self.seat.table.identifier;
+	var location = self.table.identifier;
 	var name = self.name;
 	return self.name + " at " + location;
 }
 
 operation Attendee allocateSeat() : Boolean {
-	// get all seats which are not allocated and sorts them so that the seats with most number of attendees
-	// nearby are first
-	var available = Seat.all.select(s|s.attendee == null).sortBy(s|s.table.attendees().size());
-	var originalSeat = self.seat; // store self's copy so that if the search fails, we restore the initial state.
+	var available = Table.all.select(t|t.capacity > t.attendees.size()).sortBy(t|t.attendees.size());
+	var original = self.table; // store self's copy so that if the search fails, we restore the initial state.
 	
-	for (seat in available) {
-		self.seat = seat;
+	for (table in available) {
+		self.table = table;
 		if (self.neighborsSpeakCommonLanguage()) {
 			return true;
 		}
 	}
 	
-	self.seat = originalSeat;
+	self.table = original;
 	return false;
 }
 
@@ -72,6 +70,17 @@ operation Attendee satNextToDisliked() : Boolean {
 	return self.neighbors().exists(a|self.dislikes.contains(a));
 }
 
+operation Attendee satNextToLiked() : Boolean {
+	if (self.likes.isEmpty()) {
+		return true;
+	}
+	return self.neighbors().exists(a|self.likes.contains(a));
+}
+
 operation Attendee surname() : String {
 	return self.name.split(" ").last();
+}
+
+operation Attendee seatNumber() : Integer {
+	return self.table.attendees.indexOf(self) + 1;
 }

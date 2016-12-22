@@ -5,34 +5,16 @@ context Universe {
 
 	// C1.3
 	constraint HasAttendees {
-		check : not self.attendees.isEmpty()
+		check : not Attendee.all.isEmpty()
 		message : "Conference dinner as no attendees."
 	}
 }
 
 context Attendee {
-
-	// C2.1
-	constraint IsAllocated {
-		guard : self.satisfies("HasName")
-		check : self.seat <> null
-		message : "Attendee (" + self.name + ") is not allocated to a table."
-		
-		fix {
-			title : "Allocate to an automatically selected seat"
-			do {
-				if (self.allocateSeat()) {
-					UserInput.inform("Allocated " + self.nameAndLocation());
-				} else {
-					UserInput.inform("Failed to find a seat that satisfies the constraints.");
-				}	
-			}
-		}
-	}
 	
 	// C2.2
 	constraint SatNextToCommonLanguage {
-		guard : self.satisfies("IsAllocated") and self.satisfies("IsNotAlone")
+		guard : self.satisfies("IsNotAlone")
 		check {
 			return self.neighborsSpeakCommonLanguage();
 		}
@@ -42,7 +24,7 @@ context Attendee {
 	// C2.3
 	constraint SpeaksAtLeastOneLanguage {
 		check : self.languages.notEmpty()
-		message : "Attendee (" + self.name + ") must speak at least one language."
+		message : "Attendee (" + self.nameAndLocation() + ") must speak at least one language."
 		
 		fix {
 			title : "Add a language to add"
@@ -56,7 +38,7 @@ context Attendee {
 	// C2.4
 	constraint DoesntLikeSelf {
 		check : self.likes.excludes(self)
-		message : "Attendee (" + self.name + ") cannot prefer himself."
+		message : "Attendee (" + self.name + ") cannot prefer to sit with himself."
 		
 		fix {
 			title : "Remove self from liked persons list"
@@ -98,7 +80,6 @@ context Attendee {
 	
 	// C2.7
 	constraint IsNotAlone {
-		guard : self.satisfies("IsAllocated")
 		check : self.neighbors().size() > 0
 		message : "Attendee (" + self.nameAndLocation() + ") should not be sat alone."
 		
@@ -123,25 +104,32 @@ context Attendee {
 			return "Attendee (" + self.nameAndLocation() + ") is sat next to a person he dislikes (" + person.name + ")";
 		}
 	}
+	
+	// Q2.2
+	critique NotSatNextToLiked {
+		guard : self.satisfies("IsNotAlone") and not self.likes.isEmpty()
+		check : self.neighbors().exists(a|self.likes.contains(a))
+		message : "Attendee (" + self.nameAndLocation() + ") has a seating preference which is not honoured." 
+	}
 }
 
 context Table {
 	// C3.1 
 	constraint DoesNotExceedCapacity {
-		check : self.seats.size() <= self.capacity
-		message : "Table (" + self.identifier + ") exceeds capacity: " + self.seats.size() + " out of " + self.capacity
+		check : self.attendees.size() <= self.capacity
+		message : "Table (" + self.identifier + ") exceeds capacity: " + self.attendees.size() + " out of " + self.capacity
 		
 		fix {
-			title : "Update capacity to match number of seats"
+			title : "Update capacity to match number of attendees"
 			do {
-				self.capacity = self.seats.size();
+				self.capacity = self.attendees.size();
 			}
 		}
 	}
 	
 	// C3.2
 	constraint IsOccupied {
-		check : not self.seats.attendee.isEmpty()
+		check : not self.attendees.isEmpty()
 		message : "Table (" + self.identifier + ") is unoccupied."
 		
 		fix {
@@ -161,7 +149,7 @@ context Table {
 	// C3.3
 	constraint HasUniqueIdentifier {
 		check : Table.all.excluding(self).identifier.excludes(self.identifier)
-		message : "Table (" + self.identifier + ") is not unique."
+		message : "Table (" + self.identifier + ") identifier is not unique."
 		
 		fix {
 			title : "Update table name"
@@ -171,31 +159,16 @@ context Table {
 		}
 	}
 	
-	// May, or may not be required. Since capacity = seats, but a seat may not be there if a table is not at full capacity
 	// Q3.1
 	critique CapacityMismatched {
 		guard : self.satisfies("DoesNotExceedCapacity")
-		check : self.seats.size() == self.capacity
-		message : "Table (" + self.identifier + ") has capacity of " + self.capacity + " but only " + self.seats.size() + " seats."
+		check : self.attendees.size() == self.capacity
+		message : "Table (" + self.identifier + ") has capacity of " + self.capacity + " but only " + self.attendees.size() + " seats."
 		
 		fix {
 			title : "Reduce capacity to match number of seats"
 			do {
-				self.capacity = self.seats.size();
-			}
-		}
-		
-		fix {
-			title : "Add seats to match capacity"
-			do {
-				var toMatch = self.capacity - self.seats.size();
-				var i = 0;
-				transaction {
-					while (i < toMatch) {
-						self.seats.add(new Seat);
-						i++;
-					}
-				}
+				self.capacity = self.attendees.size();
 			}
 		}
 	}
@@ -211,59 +184,11 @@ context Table {
 			}
 		}
 	}
-	
-	// Q3.3
-	critique NoSeats {
-		guard : self.satisfies("NoName")
-		check : self.seats.size() > 0
-		message : "Table (" + self.identifier + ") has no seats."
-		
-		fix {
-			title : "Delete table"
-			do {
-				var dinner = Universe.all.first().dinner;
-				dinner.tables = dinner.tables.excluding(self);
-			}		
-		}
-		
-		fix {
-			title : "Add seats"
-			do {
-				var seats = UserInput.promptInteger("How many seats would you like to create?");
-				self.capacity = seats;
-				var i = 0;
-				transaction {
-					while (i < seats) {
-						self.seats.add(new Seat);
-						i++;
-					}
-				}
-			}			
-		}
-	}
-}
-
-context Seat {
-	// Q4.1
-	critique EmptySeat {
-		guard : self.table.satisfies("DoesNotExceedCapacity") 
-		check : self.attendee <> null
-		message : "Seat (at " + self.table.identifier + ") is unoccupied."
-		
-		fix {
-			title : "Remove seat and match update table capacity"
-			do {
-				var table = self.table;
-				table.seats = table.seats.excluding(self);
-				table.capacity = table.capacity - 1;
-			}
-		}
-	}
 }
 
 context Language {
 	
-	// C5.1
+	// C4.1
 	constraint HasName {
 		check : self.name <> null and self.name <> ""
 		message : "Institution must have a name set"
@@ -280,7 +205,7 @@ context Language {
 		}
 	}
 	
-	// Q5.1
+	// Q4.1
 	critique IsUsed {
 		check {
 			var used = Attendee.all.languages.flatten().asSet();
@@ -303,7 +228,7 @@ context Language {
 }
 
 context Institution {
-	// C6.1
+	// C5.1
 	constraint HasName {
 		check : self.name <> null and self.name <> ""
 		message : "Institution must have a name set"
@@ -320,7 +245,7 @@ context Institution {
 		}
 	}
 	
-	// Q6.1
+	// Q5.1
 	critique IsRepresented {
 		check {
 			var represented = Attendee.all.affiliation.asSet();
@@ -343,7 +268,7 @@ context Institution {
 }
 
 context Dinner {
-	// Q7.1
+	// Q6.1
 	critique NoName {
 		check : self.name <> null and self.name <> ""
 		message : "Conference dinner has no title. It is highly recommended to add one."

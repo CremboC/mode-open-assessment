@@ -6,11 +6,8 @@ operation testNoNeighbors() {
 	
 	var a1 = new Attendee;
 	a1.name = "A1";
-	
-	var s1 = new Seat;
-	s1.attendee = a1;
-	
-	table.seats = OrderedSet{s1};
+
+	table.attendees = OrderedSet{a1};
 
 	var neighbors = a1.neighbors();
 	assertTrue("Attendee should have no neighbors, has " + neighbors.size(), neighbors.isEmpty());
@@ -25,12 +22,7 @@ operation testOneNeighbors() {
 	var a2 = new Attendee;
 	a2.name = "A2";
 	
-	var s1 = new Seat;
-	var s2 = new Seat;
-	s1.attendee = a1;
-	s2.attendee = a2;
-	
-	table.seats = OrderedSet{s1, s2};
+	table.attendees = OrderedSet{a1, a2};
 	
 	var neighbors = a2.neighbors();
 	assertTrue("Attendee should have 1 neighbor, has " + neighbors.size(), neighbors.size() == 1);
@@ -50,16 +42,7 @@ operation testTwoNeighbors() {
 	var a4 = new Attendee;
 	a3.name = "A4";	
 	
-	var s1 = new Seat;
-	var s2 = new Seat;
-	var s3 = new Seat;
-	var s4 = new Seat;
-	s1.attendee = a1;
-	s2.attendee = a2;
-	s3.attendee = a3;
-	s4.attendee = a4;
-	
-	table.seats = OrderedSet{s1, s2, s3, s4};
+	table.attendees = OrderedSet{a1, a2, a3, a4};
 	
 	var neighbors = a2.neighbors();
 	assertTrue("Attendee should have 1 neighbor, has " + neighbors.size(), neighbors.size() == 2);
@@ -70,12 +53,10 @@ operation testTwoNeighbors() {
 operation testNameAndLocation() {
 	var table = new Table;
 	table.identifier = "Table1";
-	var s = new Seat;
 	var a = new Attendee;
 	a.name = "A1";
 	
-	s.attendee = a;
-	table.seats = OrderedSet{s};
+	table.attendees = OrderedSet{a};
 	
 	assertTrue(a.nameAndLocation() == "A1 at Table1");
 }
@@ -84,12 +65,10 @@ operation testNameAndLocation() {
 operation testFailedAllocateSeat() {
 	var table = new Table;
 	table.identifier = "Table1";
+	table.capacity = 3;
 	
 	var a = new Attendee;
 	a.name = "A1";
-
-	var s = new Seat;
-	table.seats = OrderedSet{s};	
 	
 	assertFalse(a.allocateSeat());
 }
@@ -109,6 +88,7 @@ operation testFailedAllocateSeatComplex() {
 	
 	var table = new Table;
 	table.identifier = "Table1";
+	table.capacity = 3;
 	
 	uni.dinner.tables.add(table);
 	
@@ -120,10 +100,7 @@ operation testFailedAllocateSeatComplex() {
 	a2.name = "A2";
 	a2.languages.add(l2);
 
-	var s1 = new Seat;
-	var s2 = new Seat;
-	s1.attendee = a2;
-	table.seats = OrderedSet{s1, s2};	
+	table.attendees = OrderedSet{a2};	
 	
 	assertFalse(a1.allocateSeat());
 }
@@ -140,9 +117,14 @@ operation testSuccessfulAllocateSeat() {
 	
 	var table = new Table;
 	table.identifier = "Table1";
+	table.capacity = 2;
+	
+	var table2 = new Table;
+	table2.identifier = "Table2";
+	table2.capacity = 2;
 	
 	uni.dinner.tables.add(table);
-
+	uni.dinner.tables.add(table2);
 	
 	var a1 = new Attendee;
 	a1.name = "A1";
@@ -152,11 +134,156 @@ operation testSuccessfulAllocateSeat() {
 	a2.name = "A2";
 	a2.languages.add(l1);
 	
-	var s1 = new Seat;
-	var s2 = new Seat;
-	s1.attendee = a2;
-	table.seats = OrderedSet{s1, s2};	
+	table.attendees = OrderedSet{a2};	
 	
 	assertTrue(a1.allocateSeat());
-	assertTrue(a1.seat == s2);
+	assertTrue(a1.table == table);
+}
+
+@test
+operation testSatNextToDislikedSuccess() {
+	var table = new Table;
+	table.identifier = "Table1";
+	table.capacity = 2;
+	
+	var a1 = new Attendee;
+	a1.name = "A1";
+	
+	var a2 = new Attendee;
+	a2.name = "A2";
+	
+	a1.dislikes.add(a2);
+	
+	table.attendees.add(a1);
+	table.attendees.add(a2);
+	
+	assertTrue(a1.satNextToDisliked());
+}
+
+@test
+operation testSatNextToDislikedSuccessComplex() {
+	var table = new Table;
+	table.identifier = "Table1";
+	table.capacity = 3;
+	
+	var a1 = new Attendee;
+	a1.name = "A1";
+	
+	var a2 = new Attendee;
+	a2.name = "A2";
+	
+	var a3 = new Attendee;
+	a3.name = "A3";	
+	
+	a1.dislikes.add(a3);
+	
+	table.attendees.add(a1);
+	table.attendees.add(a2);
+	table.attendees.add(a3);
+	
+	assertTrue(a1.satNextToDisliked());
+}
+
+@test
+operation testSatNextToDislikedFailedComplex() {
+	var table = new Table;
+	table.identifier = "Table1";
+	table.capacity = 3;
+	
+	var a1 = new Attendee;
+	a1.name = "A1";
+	
+	var a2 = new Attendee;
+	a2.name = "A2";
+	
+	var a3 = new Attendee;
+	a3.name = "A3";	
+	
+	var a4 = new Attendee;
+	a4.name = "A4";	
+	
+	a1.dislikes.add(a3);
+	
+	table.attendees.add(a1);
+	table.attendees.add(a2);
+	table.attendees.add(a3);
+	table.attendees.add(a4);
+	
+	assertFalse(a1.satNextToDisliked());
+}
+
+@test
+operation testNeighborsSpeakCommonLanguageSuccess() {
+	var uni = new Universe;
+	uni.dinner = new Dinner;
+	
+	var l1 = new Language;
+	l1.name = "L1";
+	
+	uni.languages.add(l1);
+	
+	var l2 = new Language;
+	l2.name = "L2";
+	
+	uni.languages.add(l2);
+	
+	var table = new Table;
+	table.identifier = "Table1";
+	table.capacity = 3;
+	
+	var a1 = new Attendee;
+	a1.name = "A1";
+	a1.languages.add(l1);
+	
+	var a2 = new Attendee;
+	a2.name = "A2";
+	a2.languages.add(l1);
+	
+	var a3 = new Attendee;
+	a3.name = "A3";	
+	
+	var a4 = new Attendee;
+	a4.name = "A4";
+	a1.languages.add(l2);	
+	
+	table.attendees.addAll(Sequence{a1, a2, a3, a4});
+	
+	assertTrue(a1.neighborsSpeakCommonLanguage());	
+}
+
+@test
+operation testNeighborsSpeakCommonLanguageFailed() {
+	var uni = new Universe;
+	uni.dinner = new Dinner;
+	
+	var l1 = new Language;
+	l1.name = "L1";
+	
+	var l2 = new Language;
+	l2.name = "L2";	
+	
+	uni.languages.add(l1);
+	uni.languages.add(l2);
+	
+	var table = new Table;
+	table.identifier = "Table1";
+	table.capacity = 3;
+	
+	var a1 = new Attendee;
+	a1.name = "A1";
+	a1.languages.add(l1);
+	
+	var a2 = new Attendee;
+	a2.name = "A2";
+	a2.languages.add(l2);
+	
+	var a3 = new Attendee;
+	a3.name = "A3";	
+	
+	var a4 = new Attendee;
+	a4.name = "A4";	
+	
+	table.attendees.addAll(Sequence{a1, a2, a3, a4});
+	
+	assertFalse(a1.neighborsSpeakCommonLanguage());	
 }

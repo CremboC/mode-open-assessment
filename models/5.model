@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="ASCII"?>
-<conferences:Universe xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:conferences="dinner" xmi:id="_HdlAkJ6dEeatS_3dZDKyxA">
-  <institutions xmi:id="_ysF1QMeGEea9BYCvpYBzbQ" name="University of Milan"/>
-  <languages xmi:id="_IoU4gceGEea9BYCvpYBzbQ" name="Spanish"/>
-  <languages xmi:id="_IoU4gseGEea9BYCvpYBzbQ" name="Italian"/>
-  <languages xmi:id="_IoU4g8eGEea9BYCvpYBzbQ" name="Latin"/>
-  <attendees xmi:id="_gp79oMalEeaWkYXIobji2g" name="Donatelo Alimante" affiliation="_ysF1QMeGEea9BYCvpYBzbQ" seat="_6c6tQceGEea9BYCvpYBzbQ"/>
-  <attendees xmi:id="_SUJUEMa2EeaWkYXIobji2g" name="Michelangelo Alfredo" languages="_IoU4gceGEea9BYCvpYBzbQ" seat="_6c7UUMeGEea9BYCvpYBzbQ"/>
-  <attendees xmi:id="_mJkw8Ma3EeaWkYXIobji2g" name="Giuseppe Garibaldi" likes="_brL0kMa5EeaWkYXIobji2g _qyOwkMbXEeaWkYXIobji2g" languages="_IoU4gseGEea9BYCvpYBzbQ _IoU4g8eGEea9BYCvpYBzbQ" seat="_6c77YceGEea9BYCvpYBzbQ"/>
-  <attendees xmi:id="_brL0kMa5EeaWkYXIobji2g" name="Amerigo Vespucci" languages="_IoU4g8eGEea9BYCvpYBzbQ _IoU4gseGEea9BYCvpYBzbQ" seat="_6c8icMeGEea9BYCvpYBzbQ"/>
-  <attendees xmi:id="_qyOwkMbXEeaWkYXIobji2g" name="Marco Polo" languages="_IoU4g8eGEea9BYCvpYBzbQ _IoU4gseGEea9BYCvpYBzbQ" seat="_6c9JgMeGEea9BYCvpYBzbQ"/>
-  <dinner xmi:id="_HGgH4J6eEeatS_3dZDKyxA" name="">
-    <tables xmi:id="_6c6tQMeGEea9BYCvpYBzbQ" identifier="Table3" capacity="6">
-      <seats xmi:id="_6c6tQceGEea9BYCvpYBzbQ" attendee="_gp79oMalEeaWkYXIobji2g"/>
-      <seats xmi:id="_6c7UUMeGEea9BYCvpYBzbQ" attendee="_SUJUEMa2EeaWkYXIobji2g"/>
-      <seats xmi:id="_6c7UUceGEea9BYCvpYBzbQ"/>
-      <seats xmi:id="_6c7UUseGEea9BYCvpYBzbQ"/>
+<conferences:Universe xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:conferences="dinner" xmi:id="_wHaFYMhfEeapo7W7OsxHgA">
+  <institutions xmi:id="_JqJSQMiAEeapo7W7OsxHgA" name="University of Milan"/>
+  <languages xmi:id="_jWnrwMhlEeapo7W7OsxHgA" name="English"/>
+  <languages xmi:id="_lExPoMhlEeapo7W7OsxHgA" name="Italian"/>
+  <languages xmi:id="_mtlAgMhlEeapo7W7OsxHgA" name="Portuguese"/>
+  <dinner xmi:id="_wmOIUMhfEeapo7W7OsxHgA" name="Explorers">
+    <tables xmi:id="_xirwkMhfEeapo7W7OsxHgA" identifier="Table1" capacity="3">
+      <attendees xmi:id="_hfGJcMhlEeapo7W7OsxHgA" name="Vasco da Gama" languages="_mtlAgMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_i3jKIMhlEeapo7W7OsxHgA" name="Amerigo Vespucci" languages="_lExPoMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_utHC4MhlEeapo7W7OsxHgA" name="Ferdinand Magellan" languages="_mtlAgMhlEeapo7W7OsxHgA _lExPoMhlEeapo7W7OsxHgA"/>
     </tables>
-    <tables xmi:id="_6c77YMeGEea9BYCvpYBzbQ" identifier="Table2" capacity="3">
-      <seats xmi:id="_6c77YceGEea9BYCvpYBzbQ" attendee="_mJkw8Ma3EeaWkYXIobji2g"/>
-      <seats xmi:id="_6c8icMeGEea9BYCvpYBzbQ" attendee="_brL0kMa5EeaWkYXIobji2g"/>
-      <seats xmi:id="_6c9JgMeGEea9BYCvpYBzbQ" attendee="_qyOwkMbXEeaWkYXIobji2g"/>
+    <tables xmi:id="_yo2HYMhfEeapo7W7OsxHgA" identifier="Table2" capacity="2">
+      <attendees xmi:id="_hfGJcchlEeapo7W7OsxHgA" name="Christopher Columbus" languages="_jWnrwMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_27jFIMh_Eeapo7W7OsxHgA" name="James Cook" likes="_27jFIMh_Eeapo7W7OsxHgA" languages="_jWnrwMhlEeapo7W7OsxHgA"/>
     </tables>
-    <tables xmi:id="_7BYFMMeGEea9BYCvpYBzbQ" identifier="Tableau"/>
+    <tables xmi:id="_Ct7HAMiAEeapo7W7OsxHgA"/>
+    <tables xmi:id="_FK5fwMiAEeapo7W7OsxHgA" identifier="Table1" capacity="2">
+      <attendees xmi:id="_GqPyoMiAEeapo7W7OsxHgA" name="Giovanni Caboto" affiliation="_JqJSQMiAEeapo7W7OsxHgA" languages="_lExPoMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_G66E0MiAEeapo7W7OsxHgA" name="Hentri de Tonti" affiliation="_JqJSQMiAEeapo7W7OsxHgA" languages="_lExPoMhlEeapo7W7OsxHgA"/>
+    </tables>
   </dinner>
 </conferences:Universe>

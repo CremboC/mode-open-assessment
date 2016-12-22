@@ -25,7 +25,7 @@
 		[% for (attendee in attendees) { %]
 			<tr>
 				<td>[%=attendee.name%]</td>
-				<td>[%=attendee.seat.table.identifier%]</td>
+				<td>[%=attendee.table.identifier%]</td>
 			</tr>
 		[% } %]	
 		</tbody>

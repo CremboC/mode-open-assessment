@@ -1,6 +1,5 @@
 [% 
-	import "../utils/attendee.eol"; 
-	import "../utils/seat.eol"; 
+	import "../utils/attendee.eol";
 %]
 <html>
 <head>
@@ -16,7 +15,7 @@
 	
 	<p> You have been invited to our conference dinner entitled "<strong>[%=Dinner.all.first().name%]</strong>".
 	
-	[% if (attendee.satNextToDisliked()) { %]
+	[% if (attendee.satNextToDisliked() or not attendee.satNextToLiked()) { %]
 	<p> Unfortunately, we were unable to satisfy to your seating preferences. However, the following people will be sat with you:
 	[% } else { %]
 	<p> You will be sat with the following people:
@@ -32,7 +31,7 @@
 		[% } %]
 	</ul>
 	
-	<p> Your table is <strong>[%=attendee.seat.table.identifier%]</strong> and your seat number is <strong>[%=attendee.seat.number()%]</strong>.
+	<p> Your table is <strong>[%=attendee.table.identifier%]</strong> and your seat number is <strong>[%=attendee.seatNumber()%]</strong>.
 	
 	<p> Regards
 	<p> The Conference Team.
