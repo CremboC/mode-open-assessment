@@ -3,6 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dinner" nsURI="dinner" nsPrefix="conferences">
   <eAnnotations source="gmf"/>
   <eClassifiers xsi:type="ecore:EClass" name="Universe">
+    <eAnnotations source="gmf.diagram"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="institutions" upperBound="-1"
         eType="#//Institution" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="languages" lowerBound="1"
@@ -13,28 +14,43 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Dinner">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tables" upperBound="-1"
-        eType="#//Table" containment="true" eOpposite="#//Table/dinner"/>
+        eType="#//Table" containment="true" eOpposite="#//Table/dinner">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Table">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="identifier"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dinner" eType="#//Dinner"
         eOpposite="#//Dinner/tables"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="seats" lowerBound="1" upperBound="-1"
-        eType="#//Seat" containment="true" eOpposite="#//Seat/table"/>
+        eType="#//Seat" containment="true" eOpposite="#//Seat/table">
+      <eAnnotations source="gmf.affixed"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Seat">
     <eAnnotations source="gmf.node">
-      <details key="label" value="attendee.name"/>
+      <details key="label.placement" value="none"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="table" eType="#//Table"
         eOpposite="#//Table/seats"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attendee" eType="#//Attendee"
-        eOpposite="#//Attendee/seat"/>
+        eOpposite="#//Attendee/seat">
+      <eAnnotations source="gmf.link"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attendee">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="affiliation" eType="#//Institution"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="likes" upperBound="-1"
@@ -48,9 +64,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="seat" eType="#//Seat" eOpposite="#//Seat/attendee"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Institution">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Language">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
