@@ -13,12 +13,15 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Dinner">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tables" upperBound="-1"
-        eType="#//Table" containment="true"/>
+        eType="#//Table" containment="true" eOpposite="#//Table/dinner"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Table">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dinner" eType="#//Dinner"
+        eOpposite="#//Dinner/tables"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="seats" lowerBound="1" upperBound="-1"
         eType="#//Seat" containment="true" eOpposite="#//Seat/table"/>
   </eClassifiers>
@@ -33,7 +36,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attendee">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="affliation" eType="#//Institution"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="affiliation" eType="#//Institution"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="likes" upperBound="-1"
         eType="#//Attendee"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dislikes" upperBound="-1"

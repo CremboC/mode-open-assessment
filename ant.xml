@@ -3,7 +3,7 @@
 		<epsilon.eunit src="tests/attendee.eunit">
 			<modelTasks>
 				<epsilon.emf.loadModel name="Universe"
-					metamodelfile="y0001392.ecore"
+					metamodelfile="metamodel/y0001392.ecore"
 					read="false" store="false"/>
 			</modelTasks>
 		</epsilon.eunit>		

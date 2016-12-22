@@ -1,0 +1,40 @@
+[% 
+	import "../utils/attendee.eol"; 
+	import "../utils/seat.eol"; 
+%]
+<html>
+<head>
+	<title>Invitation to [%=Dinner.all.first().name%]</title>
+	<style>
+		body {
+			font-family: Helvetica, Arial, sans-serif;
+		}
+	</style>
+</head>
+<body>
+	<p> Dear [%=attendee.name%]
+	
+	<p> You have been invited to our conference dinner entitled "<strong>[%=Dinner.all.first().name%]</strong>".
+	
+	[% if (attendee.satNextToDisliked()) { %]
+	<p> Unfortunately, we were unable to satisfy to your seating preferences. However, the following people will be sat with you:
+	[% } else { %]
+	<p> You will be sat with the following people:
+	[% } %]
+	
+	<ul>
+		[% for (neighbor in attendee.allNeighbors()) {  %]
+			[% if (neighbor.hasProperty("name")) { %] 
+				<li>
+					<strong>[%=neighbor.name%]</strong> [% if (neighbor.affiliation <> null) { %] from [%=neighbor.affiliation.name%] [% } %]
+				</li>
+			[% } %]
+		[% } %]
+	</ul>
+	
+	<p> Your table is <strong>[%=attendee.seat.table.identifier%]</strong> and your seat number is <strong>[%=attendee.seat.number()%]</strong>.
+	
+	<p> Regards
+	<p> The Conference Team.
+</body>
+</html>

@@ -1,47 +1,12 @@
-import "utils/attendee.eol";
-import "utils/table.eol";
+import "../utils/attendee.eol";
+import "../utils/table.eol";
 
-context Language {
-	critique IsUsed {
-		check {
-			var used = Attendee.all.languages.flatten().asSet();
-			return used.contains(self);
-		}
-		message : "Language " + self.name + " is not spoken by any attendee."
-		
-		fix {
-			title : "Delete language"
-			do {
-				var universe = Universe.all.first();
-				var name = self.name;
-				universe.languages = universe.languages.excluding(self);
-				if (universe.languages.excludes(self)) {
-					UserInput.inform("Language " + name + " deleted");
-				}
-			}
-		}
-	}
-}
+context Universe {
 
-context Institution {
-	critique IsRepresented {
-		check {
-			var represented = Attendee.all.affliation.asSet();
-			return represented.contains(self); 
-		}
-		message : "Institution " + self.name + " is not represented by any attendee."
-		
-		fix {
-			title : "Delete institution"
-			do {
-				var universe = Universe.all.first();
-				var name = self.name;
-				universe.institutions = universe.institutions.excluding(self);
-				if (universe.institutions.excludes(self)) {
-					UserInput.inform("Institution " + name + " deleted");
-				}
-			}
-		}
+	// C1.3
+	constraint HasAttendees {
+		check : not self.attendees.isEmpty()
+		message : "Conference dinner as no attendees."
 	}
 }
 
@@ -122,7 +87,10 @@ context Attendee {
 		fix {
 			title : "Set name"
 			do {
-				var name = UserInput.prompt("Please enter this attendee's name");
+				var name : String;
+				while (name == "") {
+					name = UserInput.prompt("Please enter this attendee's name:");
+				}
 				self.name = name;
 			}
 		}
@@ -288,6 +256,106 @@ context Seat {
 				var table = self.table;
 				table.seats = table.seats.excluding(self);
 				table.capacity = table.capacity - 1;
+			}
+		}
+	}
+}
+
+context Language {
+	
+	// C5.1
+	constraint HasName {
+		check : self.name <> null and self.name <> ""
+		message : "Institution must have a name set"
+		
+		fix {
+			title : "Set name for language"
+			do {
+				var name : String;
+				while (name == "") {
+					name = UserInput.prompt("Enter language name:");
+				}
+				self.name = name;
+			}
+		}
+	}
+	
+	// Q5.1
+	critique IsUsed {
+		check {
+			var used = Attendee.all.languages.flatten().asSet();
+			return used.contains(self);
+		}
+		message : "Language " + self.name + " is not spoken by any attendee."
+		
+		fix {
+			title : "Delete language"
+			do {
+				var universe = Universe.all.first();
+				var name = self.name;
+				universe.languages = universe.languages.excluding(self);
+				if (universe.languages.excludes(self)) {
+					UserInput.inform("Language " + name + " deleted");
+				}
+			}
+		}
+	}
+}
+
+context Institution {
+	// C6.1
+	constraint HasName {
+		check : self.name <> null and self.name <> ""
+		message : "Institution must have a name set"
+		
+		fix {
+			title : "Set name for institution"
+			do {
+				var name : String;
+				while (name == "") {
+					name = UserInput.prompt("Enter institution name:");
+				}
+				self.name = name;
+			}
+		}
+	}
+	
+	// Q6.1
+	critique IsRepresented {
+		check {
+			var represented = Attendee.all.affiliation.asSet();
+			return represented.contains(self); 
+		}
+		message : "Institution " + self.name + " is not represented by any attendee."
+		
+		fix {
+			title : "Delete institution"
+			do {
+				var universe = Universe.all.first();
+				var name = self.name;
+				universe.institutions = universe.institutions.excluding(self);
+				if (universe.institutions.excludes(self)) {
+					UserInput.inform("Institution " + name + " deleted");
+				}
+			}
+		}
+	}
+}
+
+context Dinner {
+	// Q7.1
+	critique NoName {
+		check : self.name <> null and self.name <> ""
+		message : "Conference dinner has no title. It is highly recommended to add one."
+		
+		fix {
+			title : "Add conference title"
+			do {
+				var name : String;
+				while (name == "") {
+					name = UserInput.prompt("Enter conference title:");
+				}
+				self.name = name;
 			}
 		}
 	}

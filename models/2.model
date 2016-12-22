@@ -9,8 +9,8 @@
   <languages xmi:id="_HT330MamEeaWkYXIobji2g" name="German"/>
   <languages xmi:id="_pANm4Ma3EeaWkYXIobji2g" name="Italian"/>
   <languages xmi:id="_rq0L8Ma3EeaWkYXIobji2g" name="Latin"/>
-  <attendees xmi:id="_eMAioMalEeaWkYXIobji2g" name="John Smith" affliation="_IKNnoJ6eEeatS_3dZDKyxA" languages="_KonjwJ6eEeatS_3dZDKyxA _HT330MamEeaWkYXIobji2g" seat="_UefLBMeCEea9BYCvpYBzbQ"/>
-  <attendees xmi:id="_gp79oMalEeaWkYXIobji2g" name="Donatelo Alimante" affliation="_JMp8EJ6eEeatS_3dZDKyxA" languages="_LRuLIJ6eEeatS_3dZDKyxA"/>
+  <attendees xmi:id="_eMAioMalEeaWkYXIobji2g" name="John Smith" affiliation="_IKNnoJ6eEeatS_3dZDKyxA" languages="_KonjwJ6eEeatS_3dZDKyxA _HT330MamEeaWkYXIobji2g" seat="_UefLBMeCEea9BYCvpYBzbQ"/>
+  <attendees xmi:id="_gp79oMalEeaWkYXIobji2g" name="Donatelo Alimante" affiliation="_JMp8EJ6eEeatS_3dZDKyxA" languages="_LRuLIJ6eEeatS_3dZDKyxA"/>
   <attendees xmi:id="_SUJUEMa2EeaWkYXIobji2g" name="Michelangelo Alfredo" languages="_LRuLIJ6eEeatS_3dZDKyxA" seat="_UefLAseCEea9BYCvpYBzbQ"/>
   <attendees xmi:id="_mJkw8Ma3EeaWkYXIobji2g" name="Giuseppe Garibaldi" likes="_brL0kMa5EeaWkYXIobji2g _WGhPIMbaEeaWkYXIobji2g _qyOwkMbXEeaWkYXIobji2g" languages="_pANm4Ma3EeaWkYXIobji2g _rq0L8Ma3EeaWkYXIobji2g" seat="_UefLBseCEea9BYCvpYBzbQ"/>
   <attendees xmi:id="_brL0kMa5EeaWkYXIobji2g" name="Amerigo Vespucci" languages="_rq0L8Ma3EeaWkYXIobji2g _pANm4Ma3EeaWkYXIobji2g" seat="_UefLB8eCEea9BYCvpYBzbQ"/>
@@ -18,8 +18,8 @@
     <allergies>Seafood</allergies>
   </attendees>
   <attendees xmi:id="_qyOwkMbXEeaWkYXIobji2g" name="Marco Polo" languages="_rq0L8Ma3EeaWkYXIobji2g _pANm4Ma3EeaWkYXIobji2g" seat="_UefLCseCEea9BYCvpYBzbQ"/>
-  <attendees xmi:id="_WGhPIMbaEeaWkYXIobji2g" name="Christopher Columbus" affliation="_84hw4MeCEea9BYCvpYBzbQ" dislikes="_brL0kMa5EeaWkYXIobji2g" languages="_pANm4Ma3EeaWkYXIobji2g" seat="_UefLCceCEea9BYCvpYBzbQ"/>
-  <dinner xmi:id="_HGgH4J6eEeatS_3dZDKyxA">
+  <attendees xmi:id="_WGhPIMbaEeaWkYXIobji2g" name="Christopher Columbus" affiliation="_84hw4MeCEea9BYCvpYBzbQ" dislikes="_brL0kMa5EeaWkYXIobji2g" languages="_pANm4Ma3EeaWkYXIobji2g" seat="_UefLCceCEea9BYCvpYBzbQ"/>
+  <dinner xmi:id="_HGgH4J6eEeatS_3dZDKyxA" name="">
     <tables xmi:id="_UefLAMeCEea9BYCvpYBzbQ" identifier="Table3" capacity="4">
       <seats xmi:id="_UefLAceCEea9BYCvpYBzbQ"/>
       <seats xmi:id="_UefLAseCEea9BYCvpYBzbQ" attendee="_SUJUEMa2EeaWkYXIobji2g"/>

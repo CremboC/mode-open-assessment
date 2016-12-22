@@ -11,13 +11,15 @@ class Universe {
 }
 
 class Dinner {
-	val Table[*] tables;
+	attr String name;
+	val Table[*]#dinner tables;
 }
 
 class Table {
 	attr String identifier;
 	attr int capacity;
 	
+	ref Dinner#tables dinner;
 	val Seat[1..*]#table seats;
 }
 
@@ -29,7 +31,7 @@ class Seat {
 
 class Attendee {
 	attr String name;
-	ref Institution affliation;
+	ref Institution affiliation;
 	
 	ref Attendee[*] likes;
 	ref Attendee[*] dislikes;

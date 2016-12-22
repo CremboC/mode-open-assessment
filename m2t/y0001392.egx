@@ -1,0 +1,17 @@
+import "../utils/attendee.eol";
+
+rule TableFinderHtml
+	transform dinner : Dinner{
+		template : "tablefinder.html.egl"
+		
+		target : "../gen/tablefinder.html"
+		
+		parameters : Map {"attendees" = Attendee.all.sortBy(a|a.surname())}
+	}
+
+rule Letter
+	transform attendee : Attendee {
+		template : "letter.html.egl"
+		
+		target : "../gen/letter-" + attendee.safeName() + ".html"
+	}

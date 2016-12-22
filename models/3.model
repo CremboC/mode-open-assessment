@@ -4,18 +4,18 @@
   <institutions xmi:id="_JMp8EJ6eEeatS_3dZDKyxA" name="University of Milan"/>
   <institutions xmi:id="_f8Z_0MeCEea9BYCvpYBzbQ" name="University of Rome"/>
   <institutions xmi:id="_84hw4MeCEea9BYCvpYBzbQ" name="University of Lisbon"/>
-  <languages name="English"/>
-  <languages name="Spanish"/>
-  <languages name="German"/>
-  <languages name="Italian"/>
-  <languages name="Latin"/>
-  <attendees xmi:id="_gp79oMalEeaWkYXIobji2g" name="Donatelo Alimante" affliation="_JMp8EJ6eEeatS_3dZDKyxA" languages="//@languages.1" seat="_UefLAceCEea9BYCvpYBzbQ"/>
-  <attendees xmi:id="_SUJUEMa2EeaWkYXIobji2g" name="Michelangelo Alfredo" languages="//@languages.1" seat="_UefLAseCEea9BYCvpYBzbQ"/>
-  <attendees xmi:id="_mJkw8Ma3EeaWkYXIobji2g" name="Giuseppe Garibaldi" likes="_brL0kMa5EeaWkYXIobji2g _WGhPIMbaEeaWkYXIobji2g _qyOwkMbXEeaWkYXIobji2g" languages="//@languages.3 //@languages.4" seat="_UefLBseCEea9BYCvpYBzbQ"/>
-  <attendees xmi:id="_brL0kMa5EeaWkYXIobji2g" name="Amerigo Vespucci" languages="//@languages.4 //@languages.3" seat="_UefLB8eCEea9BYCvpYBzbQ"/>
-  <attendees xmi:id="_qyOwkMbXEeaWkYXIobji2g" name="Marco Polo" languages="//@languages.4 //@languages.3" seat="_UefLCseCEea9BYCvpYBzbQ"/>
-  <attendees xmi:id="_WGhPIMbaEeaWkYXIobji2g" name="Christopher Columbus" affliation="_84hw4MeCEea9BYCvpYBzbQ" dislikes="_brL0kMa5EeaWkYXIobji2g" languages="//@languages.3" seat="_UefLCceCEea9BYCvpYBzbQ"/>
-  <dinner xmi:id="_HGgH4J6eEeatS_3dZDKyxA">
+  <languages xmi:id="_QnUJgMegEeapo7W7OsxHgA" name="English"/>
+  <languages xmi:id="_QnUJgcegEeapo7W7OsxHgA" name="Spanish"/>
+  <languages xmi:id="_QnUJgsegEeapo7W7OsxHgA" name="German"/>
+  <languages xmi:id="_QnUJg8egEeapo7W7OsxHgA" name="Italian"/>
+  <languages xmi:id="_QnUJhMegEeapo7W7OsxHgA" name="Latin"/>
+  <attendees xmi:id="_gp79oMalEeaWkYXIobji2g" name="Donatelo Alimante" affiliation="_JMp8EJ6eEeatS_3dZDKyxA" languages="_QnUJgcegEeapo7W7OsxHgA" seat="_UefLAceCEea9BYCvpYBzbQ"/>
+  <attendees xmi:id="_SUJUEMa2EeaWkYXIobji2g" name="Michelangelo Alfredo" affiliation="_f8Z_0MeCEea9BYCvpYBzbQ" languages="_QnUJgcegEeapo7W7OsxHgA" seat="_UefLAseCEea9BYCvpYBzbQ"/>
+  <attendees xmi:id="_mJkw8Ma3EeaWkYXIobji2g" name="Giuseppe Garibaldi" likes="_brL0kMa5EeaWkYXIobji2g _WGhPIMbaEeaWkYXIobji2g _qyOwkMbXEeaWkYXIobji2g" languages="_QnUJg8egEeapo7W7OsxHgA _QnUJhMegEeapo7W7OsxHgA" seat="_UefLBseCEea9BYCvpYBzbQ"/>
+  <attendees xmi:id="_brL0kMa5EeaWkYXIobji2g" name="Amerigo Vespucci" languages="_QnUJhMegEeapo7W7OsxHgA _QnUJg8egEeapo7W7OsxHgA" seat="_UefLB8eCEea9BYCvpYBzbQ"/>
+  <attendees xmi:id="_qyOwkMbXEeaWkYXIobji2g" name="Marco Polo" languages="_QnUJhMegEeapo7W7OsxHgA _QnUJg8egEeapo7W7OsxHgA" seat="_UefLCseCEea9BYCvpYBzbQ"/>
+  <attendees xmi:id="_WGhPIMbaEeaWkYXIobji2g" name="Christopher Columbus" affiliation="_84hw4MeCEea9BYCvpYBzbQ" dislikes="_brL0kMa5EeaWkYXIobji2g" languages="_QnUJg8egEeapo7W7OsxHgA" seat="_UefLCceCEea9BYCvpYBzbQ"/>
+  <dinner xmi:id="_HGgH4J6eEeatS_3dZDKyxA" name="Explorers">
     <tables xmi:id="_UefLAMeCEea9BYCvpYBzbQ" identifier="Table3" capacity="4">
       <seats xmi:id="_UefLAceCEea9BYCvpYBzbQ" attendee="_gp79oMalEeaWkYXIobji2g"/>
       <seats xmi:id="_UefLAseCEea9BYCvpYBzbQ" attendee="_SUJUEMa2EeaWkYXIobji2g"/>

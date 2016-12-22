@@ -1,6 +1,7 @@
 import "table.eol";
 
-operation Attendee neighbors(): Set {
+// returns immediate neighbors (left and right)
+operation Attendee neighbors() : Set {
 	if (self.seat == null) {
 		return Set{};
 	}
@@ -28,13 +29,18 @@ operation Attendee neighbors(): Set {
 	return neighbors.excluding(self);
 }
 
-operation Attendee nameAndLocation(): String {
+// returns all people in the same table
+operation Attendee allNeighbors() : Set {
+	return self.seat.table.attendees().excluding(self);
+}
+
+operation Attendee nameAndLocation() : String {
 	var location = self.seat.table.identifier;
 	var name = self.name;
 	return self.name + " at " + location;
 }
 
-operation Attendee allocateSeat(): Boolean {
+operation Attendee allocateSeat() : Boolean {
 	// get all seats which are not allocated and sorts them so that the seats with most number of attendees
 	// nearby are first
 	var available = Seat.all.select(s|s.attendee == null).sortBy(s|s.table.attendees().size());
@@ -56,4 +62,16 @@ operation Attendee neighborsSpeakCommonLanguage() : Boolean {
 	// and check if at least one of the is spoken by the current attendee.
 	// Note the list of languages is not unique, but it does not matter.
 	return self.neighbors().languages.flatten().exists(l|self.languages.contains(l));
+}
+
+operation Attendee safeName() : String {
+	return self.name.toLowerCase.replace(" ", "-");
+}
+
+operation Attendee satNextToDisliked() : Boolean {
+	return self.neighbors().exists(a|self.dislikes.contains(a));
+}
+
+operation Attendee surname() : String {
+	return self.name.split(" ").last();
 }
