@@ -24,6 +24,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="Table">
     <eAnnotations source="gmf.node">
       <details key="label" value="identifier"/>
+      <details key="label.placement" value="internal"/>
+      <details key="margin" value="15"/>
+      <details key="figure" value="svg"/>
+      <details key="svg.uri" value="platform:/plugin/conference-dinner/icons/circle.svg"/>
+      <details key="label.icon" value="false"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -39,7 +44,9 @@
       <details key="label" value="name"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="affiliation" eType="#//Institution"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="affiliation" eType="#//Institution">
+      <eAnnotations source="gmf.label"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="likes" upperBound="-1"
         eType="#//Attendee"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dislikes" upperBound="-1"
