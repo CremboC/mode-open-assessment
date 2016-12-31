@@ -1,5 +1,6 @@
 [% 
 	import "../utils/table.eol";
+	import "../utils/attendee.eol";
 %]
 
 <html>
@@ -24,7 +25,7 @@
 		<tbody>
 		[% for (attendee in attendees) { %]
 			<tr>
-				<td>[%=attendee.name%]</td>
+				<td>[%=attendee.surname%], [%=attendee.name%]</td>
 				<td>[%=attendee.table.identifier%]</td>
 			</tr>
 		[% } %]	

@@ -20,7 +20,7 @@ class Dinner {
 
 @gmf.node(
 	label = "identifier",
-	label.placement = "internal",
+	label.placement = "external",
 	margin = "5", 
 	figure = "svg", 
 	svg.uri = "platform:/plugin/conference-dinner/icons/circle.svg",
@@ -36,14 +36,25 @@ class Table {
 	val Attendee[1..*]# table attendees;
 }
 
-@gmf.node(label = "name")
+@gmf.node(label = "surname")
 class Attendee {
 	attr String name;
+	attr String surname;
 
 	@gmf.label
 	ref Institution affiliation;
 	
+	@gmf.link(
+		color="0,255,0", 
+		source.constraint="self <> oppositeEnd",
+		target.decoration="arrow"
+	)
 	ref Attendee[*] likes;
+	@gmf.link(
+		color="255,0,0", 
+		source.constraint="self <> oppositeEnd", 
+		target.decoration="arrow"
+	)
 	ref Attendee[*] dislikes;
 
 	ref Language[1..*] languages;

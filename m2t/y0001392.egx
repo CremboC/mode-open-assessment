@@ -6,7 +6,7 @@ rule TableFinderHtml
 		
 		target : "../gen/tablefinder.html"
 		
-		parameters : Map {"attendees" = Attendee.all.sortBy(a|a.surname())}
+		parameters : Map {"attendees" = Attendee.all.sortBy(a|a.surname)}
 	}
 
 rule Letter

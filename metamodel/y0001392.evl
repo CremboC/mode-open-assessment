@@ -70,10 +70,13 @@ context Attendee {
 			title : "Set name"
 			do {
 				var name : String;
+				var surname : String;
 				while (name == "") {
-					name = UserInput.prompt("Please enter this attendee's name:");
+					name = UserInput.prompt("Please enter this attendee's first name:");
 				}
+				surname = UserInput.prompt("And his surname: (leave blank not applicable)");
 				self.name = name;
+				self.surname = surname;
 			}
 		}
 	}

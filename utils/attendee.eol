@@ -22,7 +22,7 @@ operation Attendee neighbors() : Set<Attendee> {
 	var nextPerson = attendees.at(nextIndex);
 	var previousPerson = attendees.at(previousIndex);
 	
-	var neighbors : Set;
+	var neighbors : Set<Attendee>;
 	if (nextPerson <> null) neighbors.add(nextPerson);
 	if (previousPerson <> null) neighbors.add(previousPerson);
 	
@@ -35,9 +35,7 @@ operation Attendee allNeighbors() : Set<Attendee> {
 }
 
 operation Attendee nameAndLocation() : String {
-	var location = self.table.identifier;
-	var name = self.name;
-	return self.name + " at " + location;
+	return self.fullName() + " at " + self.table.identifier;
 }
 
 operation Attendee allocateSeat() : Boolean {
@@ -62,8 +60,16 @@ operation Attendee neighborsSpeakCommonLanguage() : Boolean {
 	return self.neighbors().languages.flatten().exists(l|self.languages.contains(l));
 }
 
+operation Attendee fullName() {
+	var append = " " + self.surname;
+	if (self.surname == "" or self.surname == null) {
+		append = "";
+	}
+	return self.name + append;
+}
+
 operation Attendee safeName() : String {
-	return self.name.toLowerCase.replace(" ", "-");
+	return self.fullName().toLowerCase.replace(" ", "-");
 }
 
 operation Attendee satNextToDisliked() : Boolean {
@@ -75,10 +81,6 @@ operation Attendee satNextToLiked() : Boolean {
 		return true;
 	}
 	return self.neighbors().exists(a|self.likes.contains(a));
-}
-
-operation Attendee surname() : String {
-	return self.name.split(" ").last();
 }
 
 operation Attendee seatNumber() : Integer {

@@ -59,6 +59,10 @@ operation testNameAndLocation() {
 	table.attendees = OrderedSet{a};
 	
 	assertTrue(a.nameAndLocation() == "A1 at Table1");
+	
+	a.surname = "S1";
+	
+	assertTrue(a.nameAndLocation() == "A1 S1 at Table1");
 }
 
 @test

@@ -6,13 +6,13 @@
   <languages xmi:id="_mtlAgMhlEeapo7W7OsxHgA" name="Portuguese"/>
   <dinner xmi:id="_wmOIUMhfEeapo7W7OsxHgA" name="Explorers">
     <tables xmi:id="_xirwkMhfEeapo7W7OsxHgA" identifier="Table1" capacity="3">
-      <attendees xmi:id="_hfGJcMhlEeapo7W7OsxHgA" name="Vasco da Gama" languages="_mtlAgMhlEeapo7W7OsxHgA"/>
-      <attendees xmi:id="_i3jKIMhlEeapo7W7OsxHgA" name="Amerigo Vespucci" languages="_lExPoMhlEeapo7W7OsxHgA"/>
-      <attendees xmi:id="_utHC4MhlEeapo7W7OsxHgA" name="Ferdinand Magellan" languages="_mtlAgMhlEeapo7W7OsxHgA _lExPoMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_hfGJcMhlEeapo7W7OsxHgA" name="Vasco" surname="da Gama" languages="_mtlAgMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_i3jKIMhlEeapo7W7OsxHgA" name="Amerigo" surname="Vespucci" languages="_lExPoMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_utHC4MhlEeapo7W7OsxHgA" name="Ferdinand" surname="Magellan" languages="_mtlAgMhlEeapo7W7OsxHgA _lExPoMhlEeapo7W7OsxHgA"/>
     </tables>
     <tables xmi:id="_yo2HYMhfEeapo7W7OsxHgA" identifier="Table2" capacity="1">
-      <attendees xmi:id="_hfGJcchlEeapo7W7OsxHgA" name="Christopher Columbus" languages="_lExPoMhlEeapo7W7OsxHgA"/>
-      <attendees xmi:id="_LfjKIMh_Eeapo7W7OsxHgA" name="James Cook" languages="_jWnrwMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_hfGJcchlEeapo7W7OsxHgA" name="Christopher" surname="Columbus" languages="_lExPoMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_LfjKIMh_Eeapo7W7OsxHgA" name="James" surname="Cook" languages="_jWnrwMhlEeapo7W7OsxHgA"/>
     </tables>
   </dinner>
 </conferences:Universe>

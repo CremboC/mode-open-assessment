@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<conferences:Universe xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:conferences="dinner">
-  <institutions name="University of Rome"/>
-  <languages name="English"/>
-  <languages name="Italian"/>
-  <languages name="Portuguese"/>
-  <dinner name="Explorers">
-    <tables identifier="Table1" capacity="3">
-      <attendees name="Vasco da Gama" languages="#//@languages.2"/>
-      <attendees name="Amerigo Vespucci" languages="#//@languages.1"/>
-      <attendees name="Ferdinand Magellan" languages="#//@languages.2 #//@languages.1"/>
+<conferences:Universe xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:conferences="dinner" xmi:id="_-bmOYM3eEea_XqydNlHrXw">
+  <institutions xmi:id="_-bm1cM3eEea_XqydNlHrXw" name="University of Rome"/>
+  <languages xmi:id="_-bncgM3eEea_XqydNlHrXw" name="English"/>
+  <languages xmi:id="_-boDkM3eEea_XqydNlHrXw" name="Italian"/>
+  <languages xmi:id="_-boDkc3eEea_XqydNlHrXw" name="Portuguese"/>
+  <dinner xmi:id="_-boqoM3eEea_XqydNlHrXw" name="Explorers">
+    <tables xmi:id="_-boqoc3eEea_XqydNlHrXw" identifier="Table1" capacity="3">
+      <attendees xmi:id="_-bp4wM3eEea_XqydNlHrXw" name="Vasco" surname="da Gama" languages="_-boDkc3eEea_XqydNlHrXw"/>
+      <attendees xmi:id="_-bqf0M3eEea_XqydNlHrXw" name="Amerigo" surname="Vespucci" languages="_-boDkM3eEea_XqydNlHrXw"/>
+      <attendees xmi:id="_-brG4M3eEea_XqydNlHrXw" name="Ferdinand" surname="Magellan" languages="_-boDkc3eEea_XqydNlHrXw _-boDkM3eEea_XqydNlHrXw"/>
     </tables>
-    <tables identifier="Table2" capacity="1">
-      <attendees name="Christopher Columbus" languages="#//@languages.0"/>
+    <tables xmi:id="_-brt8M3eEea_XqydNlHrXw" identifier="Table2" capacity="1">
+      <attendees xmi:id="_-bsVAM3eEea_XqydNlHrXw" name="Christopher Columbus" languages="_-bncgM3eEea_XqydNlHrXw"/>
     </tables>
   </dinner>
 </conferences:Universe>

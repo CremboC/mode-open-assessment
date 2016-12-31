@@ -6,18 +6,18 @@
   <languages xmi:id="_mtlAgMhlEeapo7W7OsxHgA" name="Portuguese"/>
   <dinner xmi:id="_wmOIUMhfEeapo7W7OsxHgA" name="Explorers">
     <tables xmi:id="_xirwkMhfEeapo7W7OsxHgA" identifier="Table1" capacity="3">
-      <attendees xmi:id="_hfGJcMhlEeapo7W7OsxHgA" name="Vasco da Gama" languages="_mtlAgMhlEeapo7W7OsxHgA"/>
-      <attendees xmi:id="_i3jKIMhlEeapo7W7OsxHgA" name="Amerigo Vespucci" languages="_lExPoMhlEeapo7W7OsxHgA"/>
-      <attendees xmi:id="_utHC4MhlEeapo7W7OsxHgA" name="Ferdinand Magellan" languages="_mtlAgMhlEeapo7W7OsxHgA _lExPoMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_hfGJcMhlEeapo7W7OsxHgA" name="Vasco" surname="da Gama" languages="_mtlAgMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_i3jKIMhlEeapo7W7OsxHgA" name="Amerigo" surname="Vespucci" languages="_lExPoMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_utHC4MhlEeapo7W7OsxHgA" name="Ferdinand" surname="Magellan" languages="_mtlAgMhlEeapo7W7OsxHgA _lExPoMhlEeapo7W7OsxHgA"/>
     </tables>
     <tables xmi:id="_yo2HYMhfEeapo7W7OsxHgA" identifier="Table2" capacity="2">
-      <attendees xmi:id="_hfGJcchlEeapo7W7OsxHgA" name="Christopher Columbus" languages="_jWnrwMhlEeapo7W7OsxHgA"/>
-      <attendees xmi:id="_27jFIMh_Eeapo7W7OsxHgA" name="James Cook" likes="_27jFIMh_Eeapo7W7OsxHgA" languages="_jWnrwMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_hfGJcchlEeapo7W7OsxHgA" name="Christopher" surname="Columbus" languages="_jWnrwMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_27jFIMh_Eeapo7W7OsxHgA" name="James" surname="Cook" likes="_27jFIMh_Eeapo7W7OsxHgA" languages="_jWnrwMhlEeapo7W7OsxHgA"/>
     </tables>
     <tables xmi:id="_Ct7HAMiAEeapo7W7OsxHgA"/>
     <tables xmi:id="_FK5fwMiAEeapo7W7OsxHgA" identifier="Table1" capacity="2">
-      <attendees xmi:id="_GqPyoMiAEeapo7W7OsxHgA" name="Giovanni Caboto" affiliation="_JqJSQMiAEeapo7W7OsxHgA" languages="_lExPoMhlEeapo7W7OsxHgA"/>
-      <attendees xmi:id="_G66E0MiAEeapo7W7OsxHgA" name="Hentri de Tonti" affiliation="_JqJSQMiAEeapo7W7OsxHgA" languages="_lExPoMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_GqPyoMiAEeapo7W7OsxHgA" name="Giovanni" surname="Caboto" affiliation="_JqJSQMiAEeapo7W7OsxHgA" languages="_lExPoMhlEeapo7W7OsxHgA"/>
+      <attendees xmi:id="_G66E0MiAEeapo7W7OsxHgA" name="Hentri" surname="de Tonti" affiliation="_JqJSQMiAEeapo7W7OsxHgA" languages="_lExPoMhlEeapo7W7OsxHgA"/>
     </tables>
   </dinner>
 </conferences:Universe>

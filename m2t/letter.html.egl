@@ -11,7 +11,7 @@
 	</style>
 </head>
 <body>
-	<p> Dear [%=attendee.name%]
+	<p> Dear [%=attendee.fullName()%] 
 	
 	<p> You have been invited to our conference dinner entitled "<strong>[%=Dinner.all.first().name%]</strong>".
 	
@@ -23,11 +23,9 @@
 	
 	<ul>
 		[% for (neighbor in attendee.allNeighbors()) {  %]
-			[% if (neighbor.hasProperty("name")) { %] 
-				<li>
-					<strong>[%=neighbor.name%]</strong> [% if (neighbor.affiliation <> null) { %] from [%=neighbor.affiliation.name%] [% } %]
-				</li>
-			[% } %]
+			<li>
+				<strong>[%=neighbor.fullName()%]</strong> [% if (neighbor.affiliation <> null) { %] from [%=neighbor.affiliation.name%] [% } %]
+			</li>
 		[% } %]
 	</ul>
 	
