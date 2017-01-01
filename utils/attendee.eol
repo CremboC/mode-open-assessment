@@ -21,7 +21,7 @@ operation Attendee neighbors() : Set<Attendee> {
 
 // returns all people in the same table
 operation Attendee allNeighbors() : Set<Attendee> {
-	return self.seat.table.seats.attendee.excluding(self).asSet();
+	return self.seat.table.seats.attendee.excluding(self).reject(a|a == null).asSet();
 }
 
 operation Attendee nameAndLocation() : String {

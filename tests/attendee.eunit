@@ -69,10 +69,6 @@ operation testTwoNeighbors() {
 	table.seats = OrderedSet{s1, s2, s3, s4};
 	
 	var neighbors = a2.neighbors();
-	for (n in neighbors) {
-		n.name.println();
-		n.type.println();
-	}
 	assertTrue("Attendee should have 2 neighbor, has " + neighbors.size(), neighbors.size() == 2);
 	assertTrue("Attendee has incorrect neighbors", neighbors.containsAll(Sequence{a1, a3}));
 }

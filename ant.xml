@@ -1,11 +1,41 @@
-<project>
+<project name="y0001392" default="main">
+	
+	<target name="load-models">
+		<epsilon.emf.register file="metamodel/y0001392.ecore"/>    
+		<epsilon.emf.loadModel 
+			name="M" 
+			modelfile="models/1.model" 
+		    metamodeluri="dinner"
+			read="true" 
+			store="false"/>
+		<echo message="Loaded metamodel y0001392.ecore, model models/1.model."/>
+	</target>	
+	
 	<target name="run-tests">
-		<epsilon.eunit src="tests/attendee.eunit">
-			<modelTasks>
-				<epsilon.emf.loadModel name="Universe"
-					metamodelfile="metamodel/y0001392.ecore"
-					read="false" store="false"/>
-			</modelTasks>
+		<epsilon.emf.loadModel 
+			name="Test" 
+			modelfile="models/1.model" 
+		    metamodeluri="dinner"
+			read="false" 
+			store="false"/>	
+		
+		<epsilon.eunit src="tests/attendee.eunit" >
+			<model ref="Test"/>
 		</epsilon.eunit>		
+	</target>
+	
+	<target name="validate" depends="load-models">
+		<epsilon.evl src="metamodel/y0001392.evl" failOnErrors="true" failOnWarnings="false">
+			<model ref="M"/>
+		</epsilon.evl>	
+	</target>
+	
+	<target name="generate" depends="load-models">
+		<epsilon.egl src="m2t/y0001392.egx">
+			<model ref="M" />
+		</epsilon.egl>
+	</target>
+	
+	<target name="main" depends="run-tests,validate,generate">
 	</target>
 </project>
