@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="ASCII"?>
-<conferences:Universe xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:conferences="dinner" xmi:id="_wHaFYMhfEeapo7W7OsxHgA">
-  <institutions xmi:id="_0vK6sMhfEeapo7W7OsxHgA" name="University of Rome"/>
-  <institutions xmi:id="_hO5WAMiAEeapo7W7OsxHgA" name="Portuguese Royal Navy"/>
-  <languages xmi:id="_jWnrwMhlEeapo7W7OsxHgA" name="English"/>
-  <languages xmi:id="_lExPoMhlEeapo7W7OsxHgA" name="Italian"/>
-  <languages xmi:id="_mtlAgMhlEeapo7W7OsxHgA" name="Portuguese"/>
-  <languages xmi:id="_3iCn8MiAEeapo7W7OsxHgA" name="Spanish"/>
-  <dinner xmi:id="_wmOIUMhfEeapo7W7OsxHgA" name="Explorers">
-    <tables xmi:id="_xirwkMhfEeapo7W7OsxHgA" identifier="Table1" capacity="3">
-      <attendees xmi:id="_i3jKIMhlEeapo7W7OsxHgA" name="Amerigo" surname="Vespucci" affiliation="_0vK6sMhfEeapo7W7OsxHgA" languages="_lExPoMhlEeapo7W7OsxHgA"/>
-      <attendees xmi:id="_utHC4MhlEeapo7W7OsxHgA" name="Ferdinand" surname="Magellan" dislikes="_hfGJcMhlEeapo7W7OsxHgA" languages="_mtlAgMhlEeapo7W7OsxHgA _lExPoMhlEeapo7W7OsxHgA"/>
-      <attendees xmi:id="_hfGJcMhlEeapo7W7OsxHgA" name="Vasco" surname="da Gama" affiliation="_hO5WAMiAEeapo7W7OsxHgA" languages="_mtlAgMhlEeapo7W7OsxHgA">
-        <allergies>Peri-peri sauce</allergies>
-      </attendees>
+<conferences:Universe xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:conferences="dinner" xmi:id="_HdlAkJ6dEeatS_3dZDKyxA">
+  <institutions xmi:id="_ysF1QMeGEea9BYCvpYBzbQ" name="University of Milan"/>
+  <languages xmi:id="_IoU4gceGEea9BYCvpYBzbQ" name="Spanish"/>
+  <languages xmi:id="_IoU4gseGEea9BYCvpYBzbQ" name="Italian"/>
+  <languages xmi:id="_IoU4g8eGEea9BYCvpYBzbQ" name="Latin"/>
+  <attendees xmi:id="_gp79oMalEeaWkYXIobji2g" name="" affiliation="_ysF1QMeGEea9BYCvpYBzbQ" languages="_IoU4gceGEea9BYCvpYBzbQ" seat="_-27rYMePEea9BYCvpYBzbQ"/>
+  <attendees xmi:id="_SUJUEMa2EeaWkYXIobji2g" name="Michelangelo" surname="Alfredo" languages="_IoU4gceGEea9BYCvpYBzbQ" seat="_j5PUYdArEeaiG4M9zbbtRQ"/>
+  <attendees xmi:id="_mJkw8Ma3EeaWkYXIobji2g" name="Giuseppe" surname="Garibaldi" likes="_brL0kMa5EeaWkYXIobji2g _qyOwkMbXEeaWkYXIobji2g" languages="_IoU4gseGEea9BYCvpYBzbQ _IoU4g8eGEea9BYCvpYBzbQ" seat="_j5PUYtArEeaiG4M9zbbtRQ"/>
+  <attendees xmi:id="_brL0kMa5EeaWkYXIobji2g" name="Amerigo" surname="Vespucci" languages="_IoU4g8eGEea9BYCvpYBzbQ _IoU4gseGEea9BYCvpYBzbQ" seat="_j5PUY9ArEeaiG4M9zbbtRQ"/>
+  <attendees xmi:id="_qyOwkMbXEeaWkYXIobji2g" name="Marco" surname="Polo" languages="_IoU4g8eGEea9BYCvpYBzbQ _IoU4gseGEea9BYCvpYBzbQ" seat="_j5PUYNArEeaiG4M9zbbtRQ"/>
+  <dinner xmi:id="_HGgH4J6eEeatS_3dZDKyxA" name="">
+    <tables xmi:id="_6c6tQMeGEea9BYCvpYBzbQ" identifier="Table3" capacity="2">
+      <seats xmi:id="_j5PUYNArEeaiG4M9zbbtRQ" number="1" attendee="_qyOwkMbXEeaWkYXIobji2g"/>
+      <seats xmi:id="_j5PUYdArEeaiG4M9zbbtRQ" number="2" attendee="_SUJUEMa2EeaWkYXIobji2g"/>
     </tables>
-    <tables xmi:id="_yo2HYMhfEeapo7W7OsxHgA" identifier="Table2" capacity="4">
-      <attendees xmi:id="_hfGJcchlEeapo7W7OsxHgA" name="Christopher" surname="Columbus" languages="_lExPoMhlEeapo7W7OsxHgA _mtlAgMhlEeapo7W7OsxHgA _3iCn8MiAEeapo7W7OsxHgA"/>
-      <attendees xmi:id="_ypYP4MiAEeapo7W7OsxHgA" name="Francisco" surname="Vazquez de Coronado" likes="_hfGJcMhlEeapo7W7OsxHgA" languages="_3iCn8MiAEeapo7W7OsxHgA"/>
-      <attendees xmi:id="_9VyIMMiAEeapo7W7OsxHgA" name="James" surname="Cook" languages="_jWnrwMhlEeapo7W7OsxHgA"/>
-      <attendees xmi:id="_DUe7QMiBEeapo7W7OsxHgA" name="Francis" surname="Drake" languages="_jWnrwMhlEeapo7W7OsxHgA"/>
+    <tables xmi:id="_6c77YMeGEea9BYCvpYBzbQ" identifier="Table2" capacity="2">
+      <seats xmi:id="_j5PUYtArEeaiG4M9zbbtRQ" number="1" attendee="_mJkw8Ma3EeaWkYXIobji2g"/>
+      <seats xmi:id="_j5PUY9ArEeaiG4M9zbbtRQ" number="2" attendee="_brL0kMa5EeaWkYXIobji2g"/>
+    </tables>
+    <tables xmi:id="_7BYFMMeGEea9BYCvpYBzbQ" identifier="Tableau">
+      <seats xmi:id="_-27rYMePEea9BYCvpYBzbQ" number="1" attendee="_gp79oMalEeaWkYXIobji2g"/>
     </tables>
   </dinner>
 </conferences:Universe>

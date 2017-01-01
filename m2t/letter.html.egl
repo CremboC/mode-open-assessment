@@ -29,7 +29,7 @@
 		[% } %]
 	</ul>
 	
-	<p> Your table is <strong>[%=attendee.table.identifier%]</strong> and your seat number is <strong>[%=attendee.seatNumber()%]</strong>.
+	<p> Your table is <strong>[%=attendee.seat.table.identifier%]</strong> and your seat number is <strong>[%=attendee.seat.number%]</strong>.
 	
 	<p> Regards
 	<p> The Conference Team.

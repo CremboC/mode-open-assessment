@@ -1,0 +1,14 @@
+operation Sequence clamp(min, max) {
+	var temp : Sequence;
+	for (val in self) {
+		if (val < min) {
+			temp.add(max);
+		} else if (val > max) {
+			temp.add(min);
+		} else {
+			temp.add(val);
+		}
+	}
+	
+	return temp;
+}

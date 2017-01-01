@@ -6,8 +6,12 @@ operation testNoNeighbors() {
 	
 	var a1 = new Attendee;
 	a1.name = "A1";
-
-	table.attendees = OrderedSet{a1};
+	
+	var s1 = new Seat;
+	s1.attendee = a1;
+	s1.number = 1;
+	
+	table.seats = OrderedSet{s1};
 
 	var neighbors = a1.neighbors();
 	assertTrue("Attendee should have no neighbors, has " + neighbors.size(), neighbors.isEmpty());
@@ -22,7 +26,14 @@ operation testOneNeighbors() {
 	var a2 = new Attendee;
 	a2.name = "A2";
 	
-	table.attendees = OrderedSet{a1, a2};
+	var s1 = new Seat;
+	var s2 = new Seat;
+	s1.attendee = a1;
+	s1.number = 1;
+	s2.attendee = a2;
+	s2.number = 2;
+	
+	table.seats = OrderedSet{s1, s2};
 	
 	var neighbors = a2.neighbors();
 	assertTrue("Attendee should have 1 neighbor, has " + neighbors.size(), neighbors.size() == 1);
@@ -42,10 +53,27 @@ operation testTwoNeighbors() {
 	var a4 = new Attendee;
 	a3.name = "A4";	
 	
-	table.attendees = OrderedSet{a1, a2, a3, a4};
+	var s1 = new Seat;
+	var s2 = new Seat;
+	var s3 = new Seat;
+	var s4 = new Seat;
+	s1.attendee = a1;
+	s1.number = 1;
+	s2.attendee = a2;
+	s2.number = 2;
+	s3.attendee = a3;
+	s3.number = 3;
+	s4.attendee = a4;
+	s4.number = 4;
+	
+	table.seats = OrderedSet{s1, s2, s3, s4};
 	
 	var neighbors = a2.neighbors();
-	assertTrue("Attendee should have 1 neighbor, has " + neighbors.size(), neighbors.size() == 2);
+	for (n in neighbors) {
+		n.name.println();
+		n.type.println();
+	}
+	assertTrue("Attendee should have 2 neighbor, has " + neighbors.size(), neighbors.size() == 2);
 	assertTrue("Attendee has incorrect neighbors", neighbors.containsAll(Sequence{a1, a3}));
 }
 
@@ -53,14 +81,13 @@ operation testTwoNeighbors() {
 operation testNameAndLocation() {
 	var table = new Table;
 	table.identifier = "Table1";
+	var s = new Seat;
 	var a = new Attendee;
 	a.name = "A1";
-	
-	table.attendees = OrderedSet{a};
-	
-	assertTrue(a.nameAndLocation() == "A1 at Table1");
-	
 	a.surname = "S1";
+	
+	s.attendee = a;
+	table.seats = OrderedSet{s};
 	
 	assertTrue(a.nameAndLocation() == "A1 S1 at Table1");
 }
@@ -69,10 +96,12 @@ operation testNameAndLocation() {
 operation testFailedAllocateSeat() {
 	var table = new Table;
 	table.identifier = "Table1";
-	table.capacity = 3;
 	
 	var a = new Attendee;
 	a.name = "A1";
+
+	var s = new Seat;
+	table.seats = OrderedSet{s};	
 	
 	assertFalse(a.allocateSeat());
 }
@@ -92,7 +121,6 @@ operation testFailedAllocateSeatComplex() {
 	
 	var table = new Table;
 	table.identifier = "Table1";
-	table.capacity = 3;
 	
 	uni.dinner.tables.add(table);
 	
@@ -104,7 +132,10 @@ operation testFailedAllocateSeatComplex() {
 	a2.name = "A2";
 	a2.languages.add(l2);
 
-	table.attendees = OrderedSet{a2};	
+	var s1 = new Seat;
+	var s2 = new Seat;
+	s1.attendee = a2;
+	table.seats = OrderedSet{s1, s2};	
 	
 	assertFalse(a1.allocateSeat());
 }
@@ -123,13 +154,8 @@ operation testSuccessfulAllocateSeat() {
 	table.identifier = "Table1";
 	table.capacity = 2;
 	
-	var table2 = new Table;
-	table2.identifier = "Table2";
-	table2.capacity = 2;
-	
 	uni.dinner.tables.add(table);
-	uni.dinner.tables.add(table2);
-	
+
 	var a1 = new Attendee;
 	a1.name = "A1";
 	a1.languages.add(l1);
@@ -138,10 +164,15 @@ operation testSuccessfulAllocateSeat() {
 	a2.name = "A2";
 	a2.languages.add(l1);
 	
-	table.attendees = OrderedSet{a2};	
+	var s1 = new Seat;
+	s1.number = 1;
+	s1.attendee = a2;
+	var s2 = new Seat;
+	s2.number = 2;
+	table.seats = OrderedSet{s1, s2};	
 	
 	assertTrue(a1.allocateSeat());
-	assertTrue(a1.table == table);
+	assertTrue(a1.seat == s2);
 }
 
 @test
@@ -158,8 +189,13 @@ operation testSatNextToDislikedSuccess() {
 	
 	a1.dislikes.add(a2);
 	
-	table.attendees.add(a1);
-	table.attendees.add(a2);
+	var s1 = new Seat;
+	s1.number = 1;
+	s1.attendee = a1;
+	var s2 = new Seat;
+	s2.number = 2;
+	s2.attendee = a2;
+	table.seats = Sequence{s1, s2};
 	
 	assertTrue(a1.satNextToDisliked());
 }
@@ -181,9 +217,16 @@ operation testSatNextToDislikedSuccessComplex() {
 	
 	a1.dislikes.add(a3);
 	
-	table.attendees.add(a1);
-	table.attendees.add(a2);
-	table.attendees.add(a3);
+	var s1 = new Seat;
+	s1.number = 1;
+	s1.attendee = a1;
+	var s2 = new Seat;
+	s2.number = 2;
+	s2.attendee = a2;
+	var s3 = new Seat;
+	s3.number = 3;
+	s3.attendee = a3;
+	table.seats = Sequence{s1, s2, s3};
 	
 	assertTrue(a1.satNextToDisliked());
 }
@@ -208,10 +251,19 @@ operation testSatNextToDislikedFailedComplex() {
 	
 	a1.dislikes.add(a3);
 	
-	table.attendees.add(a1);
-	table.attendees.add(a2);
-	table.attendees.add(a3);
-	table.attendees.add(a4);
+	var s1 = new Seat;
+	s1.number = 1;
+	s1.attendee = a1;
+	var s2 = new Seat;
+	s2.number = 2;
+	s2.attendee = a2;
+	var s3 = new Seat;
+	s3.number = 3;
+	s3.attendee = a3;
+	var s4 = new Seat;
+	s4.number = 4;
+	s4.attendee = a4;
+	table.seats = Sequence{s1, s2, s3, s4};
 	
 	assertFalse(a1.satNextToDisliked());
 }
@@ -250,7 +302,19 @@ operation testNeighborsSpeakCommonLanguageSuccess() {
 	a4.name = "A4";
 	a1.languages.add(l2);	
 	
-	table.attendees.addAll(Sequence{a1, a2, a3, a4});
+	var s1 = new Seat;
+	s1.number = 1;
+	s1.attendee = a1;
+	var s2 = new Seat;
+	s2.number = 2;
+	s2.attendee = a2;
+	var s3 = new Seat;
+	s3.number = 3;
+	s3.attendee = a3;
+	var s4 = new Seat;
+	s4.number = 4;
+	s4.attendee = a4;
+	table.seats = Sequence{s1, s2, s3, s4};
 	
 	assertTrue(a1.neighborsSpeakCommonLanguage());	
 }
@@ -287,7 +351,52 @@ operation testNeighborsSpeakCommonLanguageFailed() {
 	var a4 = new Attendee;
 	a4.name = "A4";	
 	
-	table.attendees.addAll(Sequence{a1, a2, a3, a4});
+	var s1 = new Seat;
+	s1.number = 1;
+	var s2 = new Seat;
+	s2.number = 2;
+	var s3 = new Seat;
+	s3.number = 3;
+	var s4 = new Seat;
+	s4.number = 4;
+	table.seats = Sequence{s1, s2, s3, s4};
 	
 	assertFalse(a1.neighborsSpeakCommonLanguage());	
+}
+
+@test
+operation testAllNeighbors() {
+	var t1 = new Table;
+	var t2 = new Table;
+	
+	var s1 = new Seat;
+	s1.number = 1;
+	
+	var s2 = new Seat;
+	s2.number = 2;
+	
+	var s12 = new Seat;
+	s12.number = 1;
+	
+	var s22 = new Seat;
+	s22.number = 2;
+	
+	t1.seats = Sequence{s1, s2};
+	t2.seats = Sequence{s12, s22};
+	
+	var a1 = new Attendee;
+	a1.name = "A1";
+	
+	var a2 = new Attendee;
+	a2.name = "A2";
+	
+	s1.attendee = a1;
+	s2.attendee = a2;
+	
+	var a3 = new Attendee;
+	a3.name = "A3";
+	
+	s12.attendee = a3;
+	
+	assertTrue(a1.allNeighbors().size() == 1);
 }

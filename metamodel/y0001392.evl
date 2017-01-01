@@ -119,20 +119,20 @@ context Attendee {
 context Table {
 	// C3.1 
 	constraint DoesNotExceedCapacity {
-		check : self.attendees.size() <= self.capacity
-		message : "Table (" + self.identifier + ") exceeds capacity: " + self.attendees.size() + " out of " + self.capacity
+		check : self.seats.attendee.size() <= self.capacity
+		message : "Table (" + self.identifier + ") exceeds capacity: " + self.attendees().size() + " out of " + self.capacity
 		
 		fix {
 			title : "Update capacity to match number of attendees"
 			do {
-				self.capacity = self.attendees.size();
+				self.capacity = self.attendees().size();
 			}
 		}
 	}
 	
 	// C3.2
 	constraint IsOccupied {
-		check : not self.attendees.isEmpty()
+		check : not self.attendees().isEmpty()
 		message : "Table (" + self.identifier + ") is unoccupied."
 		
 		fix {
@@ -165,13 +165,13 @@ context Table {
 	// Q3.1
 	critique CapacityMismatched {
 		guard : self.satisfies("DoesNotExceedCapacity")
-		check : self.attendees.size() == self.capacity
-		message : "Table (" + self.identifier + ") has capacity of " + self.capacity + " but only " + self.attendees.size() + " seats."
+		check : self.attendees().size() == self.capacity
+		message : "Table (" + self.identifier + ") has capacity of " + self.capacity + " but only " + self.attendees().size() + " seats."
 		
 		fix {
 			title : "Reduce capacity to match number of seats"
 			do {
-				self.capacity = self.attendees.size();
+				self.capacity = self.attendees().size();
 			}
 		}
 	}
@@ -286,5 +286,15 @@ context Dinner {
 				self.name = name;
 			}
 		}
+	}
+}
+
+context Seat {
+	constraint UniqueNumber {
+		check {
+			var otherNumbers = self.table.seats.excluding(self).number;
+			return not otherNumbers.includes(self.number);
+		}
+		message : "Seat number (at table " + self.table.identifier + ") must be unique."
 	}
 }

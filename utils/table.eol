@@ -11,3 +11,7 @@ operation Table requestUniqueIdentifier() {
 	}
 	self.identifier = identifier;
 }
+
+operation Table attendees() : OrderedSet<Attendee> {
+	return self.seats.attendee.asOrderedSet();
+}
