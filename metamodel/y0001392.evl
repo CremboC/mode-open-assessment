@@ -11,13 +11,28 @@ context Universe {
 }
 
 context Attendee {
+
+	// C2.1
+	constraint IsAllocated {
+		guard : self.satisfies("HasName")
+		check : self.seat <> null
+		message : "Attendee (" + self.fullName() + ") is not allocated to a table."
+		
+		fix {
+			title : "Allocate to an automatically selected seat"
+			do {
+				if (self.allocateSeat()) {
+					UserInput.inform("Allocated " + self.nameAndLocation());
+				} else {
+					UserInput.inform("Failed to find a seat that satisfies the constraints.");
+				}	
+			}
+		}
+	}
 	
 	// C2.2
 	constraint SatNextToCommonLanguage {
-		guard : self.satisfies("IsNotAlone")
-		check {
-			return self.neighborsSpeakCommonLanguage();
-		}
+		check : self.neighborsSpeakCommonLanguage()
 		message : "Attendee (" + self.nameAndLocation() + ") should be sat next to a person with at least one common language."
 	}
 
@@ -27,7 +42,7 @@ context Attendee {
 		message : "Attendee (" + self.nameAndLocation() + ") must speak at least one language."
 		
 		fix {
-			title : "Add a language to add"
+			title : "Select a language to add"
 			do {
 				var languages = UserInput.chooseMany("Select some langauges", Language.all);
 				self.languages = languages;
@@ -81,26 +96,8 @@ context Attendee {
 		}
 	}
 	
-	// C2.7
-	constraint IsNotAlone {
-		check : self.neighbors().size() > 0
-		message : "Attendee (" + self.nameAndLocation() + ") should not be sat alone."
-		
-		fix {
-			title : "Allocate new seat"
-			do {
-				if (self.allocateSeat()) {
-					UserInput.inform("Allocated " + self.nameAndLocation());
-				} else {
-					UserInput.inform("Failed to find a seat that satisfies the constraints.");
-				}
-			}
-		}
-	}
-	
 	// Q2.1
 	critique SatNextToDisliked {
-		guard : self.satisfies("IsNotAlone")
 		check : not self.neighbors().exists(a|self.dislikes.contains(a))
 		message {
 			var person = self.neighbors().select(a|self.dislikes.contains(a)).first();
@@ -110,22 +107,28 @@ context Attendee {
 	
 	// Q2.2
 	critique NotSatNextToLiked {
-		guard : self.satisfies("IsNotAlone") and not self.likes.isEmpty()
+		guard : not self.likes.isEmpty()
 		check : self.neighbors().exists(a|self.likes.contains(a))
 		message : "Attendee (" + self.nameAndLocation() + ") has a seating preference which is not honoured." 
+	}
+	
+	// Q2.3
+	critique LikedAndDisliked {
+		check : not self.likes.exists(a|self.dislikes.contains(a))
+		message : "Attendee (" + self.nameAndLocation() + ") has a liked/disliked person that is also in the disliked/liked list."
 	}
 }
 
 context Table {
 	// C3.1 
 	constraint DoesNotExceedCapacity {
-		check : self.seats.attendee.size() <= self.capacity
-		message : "Table (" + self.identifier + ") exceeds capacity: " + self.attendees().size() + " out of " + self.capacity
+		check : self.seats.size() <= self.capacity
+		message : "Table (" + self.identifier + ") exceeds capacity: " + self.seats.size() + " out of " + self.capacity
 		
 		fix {
 			title : "Update capacity to match number of attendees"
 			do {
-				self.capacity = self.attendees().size();
+				self.capacity = self.seats.size();
 			}
 		}
 	}
@@ -139,7 +142,7 @@ context Table {
 			title : "Delete table"
 			do {
 				var dinner = Universe.all.first().dinner;
-				var oldIdentifier = self.id;
+				var oldIdentifier = self.identifier;
 				dinner.tables = dinner.tables.excluding(self);
 				
 				if (dinner.tables.excludes(self)) {
@@ -165,13 +168,27 @@ context Table {
 	// Q3.1
 	critique CapacityMismatched {
 		guard : self.satisfies("DoesNotExceedCapacity")
-		check : self.attendees().size() == self.capacity
-		message : "Table (" + self.identifier + ") has capacity of " + self.capacity + " but only " + self.attendees().size() + " seats."
+		check : self.seats.size() == self.capacity
+		message : "Table (" + self.identifier + ") has capacity of " + self.capacity + " but only " + self.seats.size() + " seats."
 		
 		fix {
 			title : "Reduce capacity to match number of seats"
 			do {
-				self.capacity = self.attendees().size();
+				self.capacity = self.seats.size();
+			}
+		}
+		
+		fix {
+			title : "Add seats to match capacity"
+			do {
+				var toMatch = self.capacity - self.seats.size();
+				var i = 0;
+				transaction {
+					while (i < toMatch) {
+						self.seats.add(new Seat);
+						i++;
+					}
+				}
 			}
 		}
 	}
@@ -187,6 +204,36 @@ context Table {
 			}
 		}
 	}
+	
+	// Q3.3
+	critique NoSeats {
+		guard : self.satisfies("NoName")
+		check : self.seats.size() > 0
+		message : "Table (" + self.identifier + ") has no seats."
+		
+		fix {
+			title : "Delete table"
+			do {
+				var dinner = Universe.all.first().dinner;
+				dinner.tables = dinner.tables.excluding(self);
+			}		
+		}
+		
+		fix {
+			title : "Add seats"
+			do {
+				var seats = UserInput.promptInteger("How many seats would you like to create?");
+				self.capacity = seats;
+				var i = 0;
+				transaction {
+					while (i < seats) {
+						self.seats.add(new Seat);
+						i++;
+					}
+				}
+			}			
+		}
+	}	
 }
 
 context Language {
@@ -290,6 +337,7 @@ context Dinner {
 }
 
 context Seat {
+	// C7.1
 	constraint UniqueNumber {
 		check {
 			var otherNumbers = self.table.seats.excluding(self).number;
@@ -297,4 +345,20 @@ context Seat {
 		}
 		message : "Seat number (at table " + self.table.identifier + ") must be unique."
 	}
+	
+	// Q7.1
+	critique EmptySeat {
+		guard : self.table.satisfies("DoesNotExceedCapacity") 
+		check : self.person <> null
+		message : "Seat (at " + self.table.identifier + ") is unoccupied."
+		
+		fix {
+			title : "Remove seat and match update table capacity"
+			do {
+				var table = self.table;
+				table.seats = table.seats.excluding(self);
+				table.capacity = table.capacity - 1;
+			}
+		}
+	}	
 }

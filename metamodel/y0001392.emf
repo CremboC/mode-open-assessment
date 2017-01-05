@@ -23,7 +23,6 @@ class Dinner {
 @gmf.node(
 	label = "identifier",
 	label.placement = "external",
-	margin = "5", 
 	figure = "svg", 
 	svg.uri = "platform:/plugin/conference-dinner/icons/circle.svg",
 	label.icon = "false"
@@ -34,18 +33,15 @@ class Table {
 	
 	ref Dinner#tables dinner;
 	
-	@gmf.affixed
 	val Seat[1..*]#table seats;
 }
 
-@gmf.node(label = "number")
+@gmf.link(label = "number", source = "table", target = "person", incoming = "true", width = "2")
 class Seat {
 	attr int number;
 	
 	ref Table#seats table;
-	
-	@gmf.link
-	ref Attendee#seat attendee;
+	ref Attendee#seat person;
 }
 
 @gmf.node(label = "surname")
@@ -62,6 +58,7 @@ class Attendee {
 		target.decoration="arrow"
 	)
 	ref Attendee[*] likes;
+	
 	@gmf.link(
 		color="255,0,0", 
 		source.constraint="self <> oppositeEnd", 
@@ -72,7 +69,7 @@ class Attendee {
 	ref Language[1..*] languages;
 	attr String[*] allergies;
 	
-	ref Seat#attendee seat;
+	ref Seat#person seat;
 }
 
 @gmf.node(label = "name")

@@ -22,16 +22,16 @@
   <dinner xmi:id="_HGgH4J6eEeatS_3dZDKyxA" name="">
     <tables xmi:id="_UefLAMeCEea9BYCvpYBzbQ" identifier="Table3" capacity="4">
       <seats xmi:id="_UefLAceCEea9BYCvpYBzbQ" number="1"/>
-      <seats xmi:id="_UefLAseCEea9BYCvpYBzbQ" number="2" attendee="_SUJUEMa2EeaWkYXIobji2g"/>
-      <seats xmi:id="_UefLA8eCEea9BYCvpYBzbQ" number="3" attendee="_7Id60Ma5EeaWkYXIobji2g"/>
-      <seats xmi:id="_UefLBMeCEea9BYCvpYBzbQ" number="4" attendee="_eMAioMalEeaWkYXIobji2g"/>
+      <seats xmi:id="_UefLAseCEea9BYCvpYBzbQ" number="2" person="_SUJUEMa2EeaWkYXIobji2g"/>
+      <seats xmi:id="_UefLA8eCEea9BYCvpYBzbQ" number="3" person="_7Id60Ma5EeaWkYXIobji2g"/>
+      <seats xmi:id="_UefLBMeCEea9BYCvpYBzbQ" number="4" person="_eMAioMalEeaWkYXIobji2g"/>
     </tables>
     <tables xmi:id="_UefLBceCEea9BYCvpYBzbQ" identifier="Table2" capacity="5">
-      <seats xmi:id="_UefLBseCEea9BYCvpYBzbQ" number="1" attendee="_mJkw8Ma3EeaWkYXIobji2g"/>
-      <seats xmi:id="_UefLB8eCEea9BYCvpYBzbQ" number="2" attendee="_brL0kMa5EeaWkYXIobji2g"/>
+      <seats xmi:id="_UefLBseCEea9BYCvpYBzbQ" number="1" person="_mJkw8Ma3EeaWkYXIobji2g"/>
+      <seats xmi:id="_UefLB8eCEea9BYCvpYBzbQ" number="2" person="_brL0kMa5EeaWkYXIobji2g"/>
       <seats xmi:id="_UefLCMeCEea9BYCvpYBzbQ" number="3"/>
-      <seats xmi:id="_UefLCceCEea9BYCvpYBzbQ" number="4" attendee="_WGhPIMbaEeaWkYXIobji2g"/>
-      <seats xmi:id="_UefLCseCEea9BYCvpYBzbQ" number="5" attendee="_qyOwkMbXEeaWkYXIobji2g"/>
+      <seats xmi:id="_UefLCceCEea9BYCvpYBzbQ" number="4" person="_WGhPIMbaEeaWkYXIobji2g"/>
+      <seats xmi:id="_UefLCseCEea9BYCvpYBzbQ" number="5" person="_qyOwkMbXEeaWkYXIobji2g"/>
     </tables>
   </dinner>
 </conferences:Universe>

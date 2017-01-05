@@ -13,5 +13,5 @@ operation Table requestUniqueIdentifier() {
 }
 
 operation Table attendees() : OrderedSet<Attendee> {
-	return self.seats.attendee.asOrderedSet();
+	return self.seats.person.asOrderedSet();
 }

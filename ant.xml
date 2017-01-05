@@ -37,5 +37,6 @@
 	</target>
 	
 	<target name="main" depends="run-tests,validate,generate">
+		<echo message="Ran tests, validated and generate letters and tablefinder into /gen" />
 	</target>
 </project>

@@ -4,22 +4,22 @@
   <languages xmi:id="_IoU4gceGEea9BYCvpYBzbQ" name="Spanish"/>
   <languages xmi:id="_IoU4gseGEea9BYCvpYBzbQ" name="Italian"/>
   <languages xmi:id="_IoU4g8eGEea9BYCvpYBzbQ" name="Latin"/>
-  <attendees xmi:id="_gp79oMalEeaWkYXIobji2g" name="" affiliation="_ysF1QMeGEea9BYCvpYBzbQ" languages="_IoU4gceGEea9BYCvpYBzbQ" seat="_-27rYMePEea9BYCvpYBzbQ"/>
+  <attendees xmi:id="_gp79oMalEeaWkYXIobji2g" name="" surname="" affiliation="_ysF1QMeGEea9BYCvpYBzbQ" languages="_IoU4gceGEea9BYCvpYBzbQ" seat="_-27rYMePEea9BYCvpYBzbQ"/>
   <attendees xmi:id="_SUJUEMa2EeaWkYXIobji2g" name="Michelangelo" surname="Alfredo" languages="_IoU4gceGEea9BYCvpYBzbQ" seat="_j5PUYdArEeaiG4M9zbbtRQ"/>
   <attendees xmi:id="_mJkw8Ma3EeaWkYXIobji2g" name="Giuseppe" surname="Garibaldi" likes="_brL0kMa5EeaWkYXIobji2g _qyOwkMbXEeaWkYXIobji2g" languages="_IoU4gseGEea9BYCvpYBzbQ _IoU4g8eGEea9BYCvpYBzbQ" seat="_j5PUYtArEeaiG4M9zbbtRQ"/>
   <attendees xmi:id="_brL0kMa5EeaWkYXIobji2g" name="Amerigo" surname="Vespucci" languages="_IoU4g8eGEea9BYCvpYBzbQ _IoU4gseGEea9BYCvpYBzbQ" seat="_j5PUY9ArEeaiG4M9zbbtRQ"/>
   <attendees xmi:id="_qyOwkMbXEeaWkYXIobji2g" name="Marco" surname="Polo" languages="_IoU4g8eGEea9BYCvpYBzbQ _IoU4gseGEea9BYCvpYBzbQ" seat="_j5PUYNArEeaiG4M9zbbtRQ"/>
   <dinner xmi:id="_HGgH4J6eEeatS_3dZDKyxA" name="">
     <tables xmi:id="_6c6tQMeGEea9BYCvpYBzbQ" identifier="Table3" capacity="2">
-      <seats xmi:id="_j5PUYNArEeaiG4M9zbbtRQ" number="1" attendee="_qyOwkMbXEeaWkYXIobji2g"/>
-      <seats xmi:id="_j5PUYdArEeaiG4M9zbbtRQ" number="2" attendee="_SUJUEMa2EeaWkYXIobji2g"/>
+      <seats xmi:id="_j5PUYNArEeaiG4M9zbbtRQ" number="1" person="_qyOwkMbXEeaWkYXIobji2g"/>
+      <seats xmi:id="_j5PUYdArEeaiG4M9zbbtRQ" number="2" person="_SUJUEMa2EeaWkYXIobji2g"/>
     </tables>
     <tables xmi:id="_6c77YMeGEea9BYCvpYBzbQ" identifier="Table2" capacity="2">
-      <seats xmi:id="_j5PUYtArEeaiG4M9zbbtRQ" number="1" attendee="_mJkw8Ma3EeaWkYXIobji2g"/>
-      <seats xmi:id="_j5PUY9ArEeaiG4M9zbbtRQ" number="2" attendee="_brL0kMa5EeaWkYXIobji2g"/>
+      <seats xmi:id="_j5PUYtArEeaiG4M9zbbtRQ" number="1" person="_mJkw8Ma3EeaWkYXIobji2g"/>
+      <seats xmi:id="_j5PUY9ArEeaiG4M9zbbtRQ" number="2" person="_brL0kMa5EeaWkYXIobji2g"/>
     </tables>
     <tables xmi:id="_7BYFMMeGEea9BYCvpYBzbQ" identifier="Tableau">
-      <seats xmi:id="_-27rYMePEea9BYCvpYBzbQ" number="1" attendee="_gp79oMalEeaWkYXIobji2g"/>
+      <seats xmi:id="_-27rYMePEea9BYCvpYBzbQ" number="1" person="_gp79oMalEeaWkYXIobji2g"/>
     </tables>
   </dinner>
 </conferences:Universe>

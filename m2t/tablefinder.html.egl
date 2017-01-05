@@ -20,6 +20,7 @@
 			<tr>
 				<th>Attendee</th>
 				<th>Table</th>
+				<th>Seat Number</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,6 +28,7 @@
 			<tr>
 				<td>[%=attendee.surname%], [%=attendee.name%]</td>
 				<td>[%=attendee.seat.table.identifier%]</td>
+				<td align="center">[%=attendee.seat.number%]</td>
 			</tr>
 		[% } %]	
 		</tbody>

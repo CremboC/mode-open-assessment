@@ -14,14 +14,14 @@ operation Attendee neighbors() : Set<Attendee> {
 		.excluding(myNumber)
 		.asSet();
 	
-	var neighbors = seats.select(s|neighborNumbers.contains(s.number)).attendee;
+	var neighbors = seats.select(s|neighborNumbers.contains(s.number)).person;
 	return neighbors.reject(n|n == null).asSet();
 	
 }
 
 // returns all people in the same table
 operation Attendee allNeighbors() : Set<Attendee> {
-	return self.seat.table.seats.attendee.excluding(self).reject(a|a == null).asSet();
+	return self.seat.table.seats.person.excluding(self).reject(a|a == null).asSet();
 }
 
 operation Attendee nameAndLocation() : String {
@@ -35,7 +35,7 @@ operation Attendee nameAndLocation() : String {
 operation Attendee allocateSeat() : Boolean {
 	// get all seats which are not allocated and sorts them so that the seats with most number of attendees
 	// nearby are first
-	var available = Seat.all.select(s|s.attendee == null).sortBy(s|s.table.attendees().size());
+	var available = Seat.all.select(s|s.person == null).sortBy(s|s.table.attendees().size());
 	var originalSeat = self.seat; // store self's copy so that if the search fails, we restore the initial state.
 	
 	for (seat in available) {

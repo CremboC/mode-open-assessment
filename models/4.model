@@ -11,17 +11,17 @@
   <attendees xmi:id="_qyOwkMbXEeaWkYXIobji2g" name="Marco" surname="Polo" languages="_IoU4g8eGEea9BYCvpYBzbQ _IoU4gseGEea9BYCvpYBzbQ" seat="_IoX70ceGEea9BYCvpYBzbQ"/>
   <dinner xmi:id="_HGgH4J6eEeatS_3dZDKyxA" name="">
     <tables xmi:id="_UefLAMeCEea9BYCvpYBzbQ" identifier="Table3" capacity="6">
-      <seats xmi:id="_UefLAceCEea9BYCvpYBzbQ" number="1" attendee="_gp79oMalEeaWkYXIobji2g"/>
-      <seats xmi:id="_UefLAseCEea9BYCvpYBzbQ" number="2" attendee="_SUJUEMa2EeaWkYXIobji2g"/>
+      <seats xmi:id="_UefLAceCEea9BYCvpYBzbQ" number="1" person="_gp79oMalEeaWkYXIobji2g"/>
+      <seats xmi:id="_UefLAseCEea9BYCvpYBzbQ" number="2" person="_SUJUEMa2EeaWkYXIobji2g"/>
       <seats xmi:id="_UefLA8eCEea9BYCvpYBzbQ" number="3"/>
       <seats xmi:id="_IoWtsMeGEea9BYCvpYBzbQ" number="4"/>
     </tables>
     <tables xmi:id="_UefLBceCEea9BYCvpYBzbQ" identifier="Table2" capacity="3">
-      <seats xmi:id="_IoXUwMeGEea9BYCvpYBzbQ" number="1" attendee="_mJkw8Ma3EeaWkYXIobji2g"/>
-      <seats xmi:id="_IoX70MeGEea9BYCvpYBzbQ" number="2" attendee="_brL0kMa5EeaWkYXIobji2g"/>
-      <seats xmi:id="_IoX70ceGEea9BYCvpYBzbQ" number="3" attendee="_qyOwkMbXEeaWkYXIobji2g"/>
+      <seats xmi:id="_IoXUwMeGEea9BYCvpYBzbQ" number="1" person="_mJkw8Ma3EeaWkYXIobji2g"/>
+      <seats xmi:id="_IoX70MeGEea9BYCvpYBzbQ" number="2" person="_brL0kMa5EeaWkYXIobji2g"/>
+      <seats xmi:id="_IoX70ceGEea9BYCvpYBzbQ" number="3" person="_qyOwkMbXEeaWkYXIobji2g"/>
     </tables>
-    <tables xmi:id="_QaemMMeGEea9BYCvpYBzbQ" identifier="Tableau" capacity="4">
+    <tables xmi:id="_QaemMMeGEea9BYCvpYBzbQ" identifier="Tableau" capacity="8">
       <seats xmi:id="_SF9QkMeGEea9BYCvpYBzbQ" number="1"/>
       <seats xmi:id="_SSsFAMeGEea9BYCvpYBzbQ" number="2"/>
       <seats xmi:id="_Si_K0MeGEea9BYCvpYBzbQ" number="3"/>

@@ -1,7 +1,7 @@
 import "../utils/attendee.eol";
 
 rule TableFinderHtml
-	transform dinner : Dinner{
+	transform dinner : Dinner {
 		template : "tablefinder.html.egl"
 		
 		target : "../gen/tablefinder.html"
@@ -14,4 +14,6 @@ rule Letter
 		template : "letter.html.egl"
 		
 		target : "../gen/letter-" + attendee.safeName() + ".html"
+		
+		parameters : Map {"dinnerName" = Dinner.all.first().name}
 	}

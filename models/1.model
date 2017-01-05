@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="ASCII"?>
 <conferences:Universe xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:conferences="dinner" xmi:id="_HdlAkJ6dEeatS_3dZDKyxA">
-  <institutions xmi:id="_IKNnoJ6eEeatS_3dZDKyxA" name="University of York"/>
-  <institutions xmi:id="_JMp8EJ6eEeatS_3dZDKyxA" name="University of Lancaster"/>
+  <institutions xmi:id="_zexa0NBXEeaiG4M9zbbtRQ" name="University of York"/>
+  <institutions xmi:id="_0ExD0NBXEeaiG4M9zbbtRQ" name="University of Lancaster"/>
   <languages xmi:id="_KonjwJ6eEeatS_3dZDKyxA" name="English"/>
   <languages xmi:id="_LRuLIJ6eEeatS_3dZDKyxA" name="Spanish"/>
   <languages xmi:id="_HT330MamEeaWkYXIobji2g" name="German"/>
   <languages xmi:id="_pANm4Ma3EeaWkYXIobji2g" name="Italian"/>
   <languages xmi:id="_rq0L8Ma3EeaWkYXIobji2g" name="Latin"/>
   <attendees xmi:id="_eMAioMalEeaWkYXIobji2g" name="John" surname="Smith" languages="_KonjwJ6eEeatS_3dZDKyxA _HT330MamEeaWkYXIobji2g" seat="_fCxxtMeZEeapo7W7OsxHgA"/>
-  <attendees xmi:id="_gp79oMalEeaWkYXIobji2g" name="Donatelo" surname="Alimante" languages="_LRuLIJ6eEeatS_3dZDKyxA" seat="_fCxxsceZEeapo7W7OsxHgA"/>
+  <attendees xmi:id="_gp79oMalEeaWkYXIobji2g" name="Donatelo" surname="Alimante" affiliation="_0ExD0NBXEeaiG4M9zbbtRQ" languages="_LRuLIJ6eEeatS_3dZDKyxA" seat="_fCxxsceZEeapo7W7OsxHgA"/>
   <attendees xmi:id="_SUJUEMa2EeaWkYXIobji2g" name="Michelangelo" surname="Alfredo" languages="_LRuLIJ6eEeatS_3dZDKyxA" seat="_fCxxsseZEeapo7W7OsxHgA"/>
   <attendees xmi:id="_mJkw8Ma3EeaWkYXIobji2g" name="Giuseppe" surname="Garibaldi" languages="_pANm4Ma3EeaWkYXIobji2g _rq0L8Ma3EeaWkYXIobji2g" seat="_fCxxtseZEeapo7W7OsxHgA"/>
   <attendees xmi:id="_brL0kMa5EeaWkYXIobji2g" name="Amerigo" surname="Vespucci" languages="_rq0L8Ma3EeaWkYXIobji2g _pANm4Ma3EeaWkYXIobji2g" seat="_fCxxt8eZEeapo7W7OsxHgA"/>
   <attendees xmi:id="_7Id60Ma5EeaWkYXIobji2g" name="James" surname="Cook" languages="_KonjwJ6eEeatS_3dZDKyxA" seat="_fCxxs8eZEeapo7W7OsxHgA"/>
   <attendees xmi:id="_qyOwkMbXEeaWkYXIobji2g" name="Marco" surname="Polo" languages="_rq0L8Ma3EeaWkYXIobji2g _pANm4Ma3EeaWkYXIobji2g" seat="_fCxxuseZEeapo7W7OsxHgA"/>
   <attendees xmi:id="_WGhPIMbaEeaWkYXIobji2g" name="Christopher" surname="Columbus" dislikes="_brL0kMa5EeaWkYXIobji2g" languages="_pANm4Ma3EeaWkYXIobji2g" seat="_fCxxuMeZEeapo7W7OsxHgA"/>
-  <dinner xmi:id="_HGgH4J6eEeatS_3dZDKyxA" name="Anglo-Italian Explorers">
+  <dinner xmi:id="_HGgH4J6eEeatS_3dZDKyxA" name="Explorers">
     <tables xmi:id="_fCxxsMeZEeapo7W7OsxHgA" identifier="Table3" capacity="4">
-      <seats xmi:id="_fCxxsceZEeapo7W7OsxHgA" number="1" attendee="_gp79oMalEeaWkYXIobji2g"/>
-      <seats xmi:id="_fCxxsseZEeapo7W7OsxHgA" number="2" attendee="_SUJUEMa2EeaWkYXIobji2g"/>
-      <seats xmi:id="_fCxxs8eZEeapo7W7OsxHgA" number="3" attendee="_7Id60Ma5EeaWkYXIobji2g"/>
-      <seats xmi:id="_fCxxtMeZEeapo7W7OsxHgA" number="4" attendee="_eMAioMalEeaWkYXIobji2g"/>
+      <seats xmi:id="_fCxxsceZEeapo7W7OsxHgA" number="1" person="_gp79oMalEeaWkYXIobji2g"/>
+      <seats xmi:id="_fCxxsseZEeapo7W7OsxHgA" number="2" person="_SUJUEMa2EeaWkYXIobji2g"/>
+      <seats xmi:id="_fCxxs8eZEeapo7W7OsxHgA" number="3" person="_7Id60Ma5EeaWkYXIobji2g"/>
+      <seats xmi:id="_fCxxtMeZEeapo7W7OsxHgA" number="4" person="_eMAioMalEeaWkYXIobji2g"/>
     </tables>
     <tables xmi:id="_fCxxtceZEeapo7W7OsxHgA" identifier="Table2" capacity="5">
-      <seats xmi:id="_fCxxtseZEeapo7W7OsxHgA" number="1" attendee="_mJkw8Ma3EeaWkYXIobji2g"/>
-      <seats xmi:id="_fCxxt8eZEeapo7W7OsxHgA" number="2" attendee="_brL0kMa5EeaWkYXIobji2g"/>
-      <seats xmi:id="_fCxxuMeZEeapo7W7OsxHgA" number="3" attendee="_WGhPIMbaEeaWkYXIobji2g"/>
+      <seats xmi:id="_fCxxtseZEeapo7W7OsxHgA" number="1" person="_mJkw8Ma3EeaWkYXIobji2g"/>
+      <seats xmi:id="_fCxxt8eZEeapo7W7OsxHgA" number="2" person="_brL0kMa5EeaWkYXIobji2g"/>
+      <seats xmi:id="_fCxxuMeZEeapo7W7OsxHgA" number="3" person="_WGhPIMbaEeaWkYXIobji2g"/>
       <seats xmi:id="_fCxxuceZEeapo7W7OsxHgA" number="4"/>
-      <seats xmi:id="_fCxxuseZEeapo7W7OsxHgA" number="5" attendee="_qyOwkMbXEeaWkYXIobji2g"/>
+      <seats xmi:id="_fCxxuseZEeapo7W7OsxHgA" number="5" person="_qyOwkMbXEeaWkYXIobji2g"/>
     </tables>
     <tables xmi:id="_fCxxu8eZEeapo7W7OsxHgA" identifier="Table1" capacity="2">
       <seats xmi:id="_fCxxvMeZEeapo7W7OsxHgA" number="1"/>

@@ -8,7 +8,7 @@ operation testNoNeighbors() {
 	a1.name = "A1";
 	
 	var s1 = new Seat;
-	s1.attendee = a1;
+	s1.person = a1;
 	s1.number = 1;
 	
 	table.seats = OrderedSet{s1};
@@ -28,9 +28,9 @@ operation testOneNeighbors() {
 	
 	var s1 = new Seat;
 	var s2 = new Seat;
-	s1.attendee = a1;
+	s1.person = a1;
 	s1.number = 1;
-	s2.attendee = a2;
+	s2.person = a2;
 	s2.number = 2;
 	
 	table.seats = OrderedSet{s1, s2};
@@ -57,13 +57,13 @@ operation testTwoNeighbors() {
 	var s2 = new Seat;
 	var s3 = new Seat;
 	var s4 = new Seat;
-	s1.attendee = a1;
+	s1.person = a1;
 	s1.number = 1;
-	s2.attendee = a2;
+	s2.person = a2;
 	s2.number = 2;
-	s3.attendee = a3;
+	s3.person = a3;
 	s3.number = 3;
-	s4.attendee = a4;
+	s4.person = a4;
 	s4.number = 4;
 	
 	table.seats = OrderedSet{s1, s2, s3, s4};
@@ -82,7 +82,7 @@ operation testNameAndLocation() {
 	a.name = "A1";
 	a.surname = "S1";
 	
-	s.attendee = a;
+	s.person = a;
 	table.seats = OrderedSet{s};
 	
 	assertTrue(a.nameAndLocation() == "A1 S1 at Table1");
@@ -130,7 +130,7 @@ operation testFailedAllocateSeatComplex() {
 
 	var s1 = new Seat;
 	var s2 = new Seat;
-	s1.attendee = a2;
+	s1.person = a2;
 	table.seats = OrderedSet{s1, s2};	
 	
 	assertFalse(a1.allocateSeat());
@@ -162,7 +162,7 @@ operation testSuccessfulAllocateSeat() {
 	
 	var s1 = new Seat;
 	s1.number = 1;
-	s1.attendee = a2;
+	s1.person = a2;
 	var s2 = new Seat;
 	s2.number = 2;
 	table.seats = OrderedSet{s1, s2};	
@@ -187,10 +187,10 @@ operation testSatNextToDislikedSuccess() {
 	
 	var s1 = new Seat;
 	s1.number = 1;
-	s1.attendee = a1;
+	s1.person = a1;
 	var s2 = new Seat;
 	s2.number = 2;
-	s2.attendee = a2;
+	s2.person = a2;
 	table.seats = Sequence{s1, s2};
 	
 	assertTrue(a1.satNextToDisliked());
@@ -215,13 +215,13 @@ operation testSatNextToDislikedSuccessComplex() {
 	
 	var s1 = new Seat;
 	s1.number = 1;
-	s1.attendee = a1;
+	s1.person = a1;
 	var s2 = new Seat;
 	s2.number = 2;
-	s2.attendee = a2;
+	s2.person = a2;
 	var s3 = new Seat;
 	s3.number = 3;
-	s3.attendee = a3;
+	s3.person = a3;
 	table.seats = Sequence{s1, s2, s3};
 	
 	assertTrue(a1.satNextToDisliked());
@@ -249,16 +249,16 @@ operation testSatNextToDislikedFailedComplex() {
 	
 	var s1 = new Seat;
 	s1.number = 1;
-	s1.attendee = a1;
+	s1.person = a1;
 	var s2 = new Seat;
 	s2.number = 2;
-	s2.attendee = a2;
+	s2.person = a2;
 	var s3 = new Seat;
 	s3.number = 3;
-	s3.attendee = a3;
+	s3.person = a3;
 	var s4 = new Seat;
 	s4.number = 4;
-	s4.attendee = a4;
+	s4.person = a4;
 	table.seats = Sequence{s1, s2, s3, s4};
 	
 	assertFalse(a1.satNextToDisliked());
@@ -300,16 +300,16 @@ operation testNeighborsSpeakCommonLanguageSuccess() {
 	
 	var s1 = new Seat;
 	s1.number = 1;
-	s1.attendee = a1;
+	s1.person = a1;
 	var s2 = new Seat;
 	s2.number = 2;
-	s2.attendee = a2;
+	s2.person = a2;
 	var s3 = new Seat;
 	s3.number = 3;
-	s3.attendee = a3;
+	s3.person = a3;
 	var s4 = new Seat;
 	s4.number = 4;
-	s4.attendee = a4;
+	s4.person = a4;
 	table.seats = Sequence{s1, s2, s3, s4};
 	
 	assertTrue(a1.neighborsSpeakCommonLanguage());	
@@ -386,13 +386,13 @@ operation testAllNeighbors() {
 	var a2 = new Attendee;
 	a2.name = "A2";
 	
-	s1.attendee = a1;
-	s2.attendee = a2;
+	s1.person = a1;
+	s2.person = a2;
 	
 	var a3 = new Attendee;
 	a3.name = "A3";
 	
-	s12.attendee = a3;
+	s12.person = a3;
 	
 	assertTrue(a1.allNeighbors().size() == 1);
 }

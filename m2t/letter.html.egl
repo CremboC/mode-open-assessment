@@ -13,7 +13,14 @@
 <body>
 	<p> Dear [%=attendee.fullName()%] 
 	
-	<p> You have been invited to our conference dinner entitled "<strong>[%=Dinner.all.first().name%]</strong>".
+	<p> 
+		You have been invited 
+	[% if (dinnerName <> "") { %]
+		to our conference dinner entitled <strong>[%=Dinner.all.first().name%]</strong>.
+	[% } else { %]
+		to a conference dinner.
+	[% } %]
+	
 	
 	[% if (attendee.satNextToDisliked() or not attendee.satNextToLiked()) { %]
 	<p> Unfortunately, we were unable to satisfy to your seating preferences. However, the following people will be sat with you:

@@ -27,7 +27,6 @@
     <eAnnotations source="gmf.node">
       <details key="label" value="identifier"/>
       <details key="label.placement" value="external"/>
-      <details key="margin" value="5"/>
       <details key="figure" value="svg"/>
       <details key="svg.uri" value="platform:/plugin/conference-dinner/icons/circle.svg"/>
       <details key="label.icon" value="false"/>
@@ -37,21 +36,21 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="dinner" eType="#//Dinner"
         eOpposite="#//Dinner/tables"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="seats" lowerBound="1" upperBound="-1"
-        eType="#//Seat" containment="true" eOpposite="#//Seat/table">
-      <eAnnotations source="gmf.affixed"/>
-    </eStructuralFeatures>
+        eType="#//Seat" containment="true" eOpposite="#//Seat/table"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Seat">
-    <eAnnotations source="gmf.node">
+    <eAnnotations source="gmf.link">
       <details key="label" value="number"/>
+      <details key="source" value="table"/>
+      <details key="target" value="person"/>
+      <details key="incoming" value="true"/>
+      <details key="width" value="2"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="table" eType="#//Table"
         eOpposite="#//Table/seats"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attendee" eType="#//Attendee"
-        eOpposite="#//Attendee/seat">
-      <eAnnotations source="gmf.link"/>
-    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="person" eType="#//Attendee"
+        eOpposite="#//Attendee/seat"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attendee">
     <eAnnotations source="gmf.node">
@@ -82,7 +81,7 @@
         upperBound="-1" eType="#//Language"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="allergies" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="seat" eType="#//Seat" eOpposite="#//Seat/attendee"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="seat" eType="#//Seat" eOpposite="#//Seat/person"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Institution">
     <eAnnotations source="gmf.node">
