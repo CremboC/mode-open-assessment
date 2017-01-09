@@ -7,9 +7,9 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: dinner,
- dinner.impl,
- dinner.util
+Export-Package: y0001392,
+ y0001392.impl,
+ y0001392.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.ui.ide;bundle-version="3.12.1",

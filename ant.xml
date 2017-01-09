@@ -5,7 +5,7 @@
 		<epsilon.emf.loadModel 
 			name="M" 
 			modelfile="models/1.model" 
-		    metamodeluri="dinner"
+		    metamodeluri="y0001392"
 			read="true" 
 			store="false"/>
 		<echo message="Loaded metamodel y0001392.ecore, model models/1.model."/>
@@ -15,7 +15,7 @@
 		<epsilon.emf.loadModel 
 			name="Test" 
 			modelfile="models/1.model" 
-		    metamodeluri="dinner"
+		    metamodeluri="y0001392"
 			read="false" 
 			store="false"/>	
 		

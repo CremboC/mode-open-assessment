@@ -6,18 +6,12 @@
 
 <plugin>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated y0001392 -->
-      <package
-            uri="dinner"
-            class="dinner.DinnerPackage"/>
-   </extension>
    <extension
          point="org.eclipse.epsilon.evl.emf.validation">
       <constraintsBinding
             compose="true"
             constraints="metamodel/y0001392.evl"
-            namespaceURI="dinner">
+            namespaceURI="y0001392">
       </constraintsBinding>
    </extension>
    <extension
@@ -30,6 +24,13 @@
             class="org.eclipse.epsilon.evl.emf.validation.EvlMarkerResolutionGenerator"
             markerType="org.eclipse.emf.ecore.diagnostic">
       </markerResolutionGenerator>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated y0001392 -->
+      <package
+            uri="y0001392"
+            class="y0001392.Y0001392Package"/>
    </extension>
 
 </plugin>

@@ -126,7 +126,7 @@ context Table {
 		message : "Table (" + self.identifier + ") exceeds capacity: " + self.seats.size() + " out of " + self.capacity
 		
 		fix {
-			title : "Update capacity to match number of attendees"
+			title : "Update capacity to match number of seats"
 			do {
 				self.capacity = self.seats.size();
 			}
