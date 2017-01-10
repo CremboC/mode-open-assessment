@@ -1,6 +1,6 @@
 <project name="y0001392" default="main">
 	
-	<target name="load-models">
+	<target name="load-model">
 		<epsilon.emf.register file="metamodel/y0001392.ecore"/>    
 		<epsilon.emf.loadModel 
 			name="M" 
@@ -24,13 +24,13 @@
 		</epsilon.eunit>		
 	</target>
 	
-	<target name="validate" depends="load-models">
+	<target name="validate" depends="load-model">
 		<epsilon.evl src="metamodel/y0001392.evl" failOnErrors="true" failOnWarnings="false">
 			<model ref="M"/>
 		</epsilon.evl>	
 	</target>
 	
-	<target name="generate" depends="load-models">
+	<target name="generate" depends="load-model">
 		<epsilon.egl src="m2t/y0001392.egx">
 			<model ref="M" />
 		</epsilon.egl>

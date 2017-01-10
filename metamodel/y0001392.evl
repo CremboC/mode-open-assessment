@@ -2,12 +2,7 @@ import "../utils/attendee.eol";
 import "../utils/table.eol";
 
 context Universe {
-
-	// C1.3
-	constraint HasAttendees {
-		check : not Attendee.all.isEmpty()
-		message : "Conference dinner as no attendees."
-	}
+	// no EVL constraints; all handled by metamodel definition.
 }
 
 context Attendee {
@@ -175,20 +170,6 @@ context Table {
 			title : "Reduce capacity to match number of seats"
 			do {
 				self.capacity = self.seats.size();
-			}
-		}
-		
-		fix {
-			title : "Add seats to match capacity"
-			do {
-				var toMatch = self.capacity - self.seats.size();
-				var i = 0;
-				transaction {
-					while (i < toMatch) {
-						self.seats.add(new Seat);
-						i++;
-					}
-				}
 			}
 		}
 	}
